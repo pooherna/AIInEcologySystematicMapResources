@@ -1,0 +1,358 @@
+FileID,Algorithm,Era
+Martinez_2025,Random forests,Classic
+Martinez_2025,CNNs,Modern
+Zerrouk_2025,RNNs,Modern
+Zerrouk_2025,CNNs,Modern
+Zerrouk_2025,Boosted trees,Classic
+Zerrouk_2025,Random forests,Classic
+Zerrouk_2025,Transformers / LLMs,Contemporary
+Zerrouk_2025,SVMs,Classic
+Matthews_2025,Random forests,Classic
+Matthews_2025,CNNs,Modern
+Lu_2025,CNNs,Modern
+Lu_2025,Random forests,Classic
+Lu_2025,Transformers / LLMs,Contemporary
+Kroth_2025,ANNs,Modern
+Kroth_2025,Boosted trees,Classic
+Kroth_2025,Random forests,Classic
+Kroth_2025,SVMs,Classic
+Kim_2025,RNNs,Modern
+Kim_2025,CNNs,Modern
+Kim_2025,Random forests,Classic
+Kim_2025,Transformers / LLMs,Contemporary
+Kim_2025,SVMs,Classic
+Wang_2025,Decision trees,Classic
+Wang_2025,CNNs,Modern
+Wang_2025,Random forests,Classic
+Wang_2025,Transformers / LLMs,Contemporary
+Wang_2025,SVMs,Classic
+Abdenour_2025,CNNs,Modern
+Abdenour_2025,Random forests,Classic
+Abdenour_2025,kNN,Classic
+Abdenour_2025,SVMs,Classic
+Chimienti_2025,CNNs,Modern
+Chimienti_2025,Random forests,Classic
+Chimienti_2025,Transformers / LLMs,Contemporary
+Chimienti_2025,kNN,Classic
+Chimienti_2025,SVMs,Classic
+Miller_2025,RNNs,Modern
+Miller_2025,Genetic / Evolutionary algorithms,Classic
+Miller_2025,CNNs,Modern
+Miller_2025,kNN,Classic
+Miller_2025,Autoencoder,Modern
+Miller_2025,SVMs,Classic
+Cipriano_2025,RNNs,Modern
+Cipriano_2025,Genetic / Evolutionary algorithms,Classic
+Cipriano_2025,CNNs,Modern
+Cipriano_2025,Hidden Markov models,Classic
+Cipriano_2025,Random forests,Classic
+Cipriano_2025,Transformers / LLMs,Contemporary
+Cipriano_2025,kNN,Classic
+Cipriano_2025,Autoencoder,Modern
+Cipriano_2025,SVMs,Classic
+Chiloane_2025,RNNs,Modern
+Chiloane_2025,Decision trees,Classic
+Chiloane_2025,CNNs,Modern
+Chiloane_2025,Boosted trees,Classic
+Chiloane_2025,Random forests,Classic
+Chiloane_2025,Transformers / LLMs,Contemporary
+Chiloane_2025,SVMs,Classic
+Axford_2024,Transformers / LLMs,Contemporary
+Axford_2024,CNNs,Modern
+Pasanisi_2024,ANNs,Modern
+Pasanisi_2024,Boosted trees,Classic
+Pasanisi_2024,Hidden Markov models,Classic
+Pasanisi_2024,SVMs,Classic
+Wang_2024,Genetic / Evolutionary algorithms,Classic
+Wang_2024,ANNs,Modern
+Wang_2024,Random forests,Classic
+Wang_2024,SVMs,Classic
+Kohlberg_2024,RNNs,Modern
+Kohlberg_2024,GNNs,Modern
+Kohlberg_2024,Genetic / Evolutionary algorithms,Classic
+Kohlberg_2024,CNNs,Modern
+Kohlberg_2024,Random forests,Classic
+Kohlberg_2024,kNN,Classic
+Kohlberg_2024,Hidden Markov models,Classic
+Kohlberg_2024,SVMs,Classic
+Jelas_2024,RNNs,Modern
+Jelas_2024,Decision trees,Classic
+Jelas_2024,CNNs,Modern
+Jelas_2024,Random forests,Classic
+Jelas_2024,kNN,Classic
+Jelas_2024,SVMs,Classic
+Tiwari_2023,Decision trees,Classic
+Tiwari_2023,ANNs,Modern
+Tiwari_2023,Random forests,Classic
+Tiwari_2023,Hidden Markov models,Classic
+Tiwari_2023,SVMs,Classic
+Lazcano-Hernandez_2023,RNNs,Modern
+Lazcano-Hernandez_2023,CNNs,Modern
+Lazcano-Hernandez_2023,Random forests,Classic
+Lazcano-Hernandez_2023,SVMs,Classic
+Rubbens_2023,RNNs,Modern
+Rubbens_2023,Decision trees,Classic
+Rubbens_2023,CNNs,Modern
+Rubbens_2023,Boosted trees,Classic
+Rubbens_2023,Random forests,Classic
+Rubbens_2023,Transformers / LLMs,Contemporary
+Rubbens_2023,kNN,Classic
+Sharma_2023,RNNs,Modern
+Sharma_2023,Decision trees,Classic
+Sharma_2023,CNNs,Modern
+Sharma_2023,Random forests,Classic
+Sharma_2023,kNN,Classic
+Sharma_2023,Hidden Markov models,Classic
+Sharma_2023,SVMs,Classic
+Ho_2022,ANNs,Modern
+Ho_2022,Random forests,Classic
+Ho_2022,kNN,Classic
+Ho_2022,SVMs,Classic
+Cruz_2022,kmeans,Classic
+Cruz_2022,Genetic / Evolutionary algorithms,Classic
+Cruz_2022,CNNs,Modern
+Cruz_2022,Random forests,Classic
+Cruz_2022,kNN,Classic
+Cruz_2022,SVMs,Classic
+Borowiec_2022,RNNs,Modern
+Borowiec_2022,kmeans,Classic
+Borowiec_2022,Genetic / Evolutionary algorithms,Classic
+Borowiec_2022,Autoencoder,Modern
+Borowiec_2022,CNNs,Modern
+Borowiec_2022,Hidden Markov models,Classic
+Farrell_2022,ANNs,Modern
+Hussein_2022,CNNs,Modern
+Hussein_2022,kNN,Classic
+Hussein_2022,Hidden Markov models,Classic
+Hussein_2022,SVMs,Classic
+Stupariu_2022,RNNs,Modern
+Stupariu_2022,kmeans,Classic
+Stupariu_2022,Decision trees,Classic
+Stupariu_2022,CNNs,Modern
+Stupariu_2022,Boosted trees,Classic
+Stupariu_2022,Random forests,Classic
+Stupariu_2022,kNN,Classic
+Stupariu_2022,Hidden Markov models,Classic
+Stupariu_2022,SVMs,Classic
+Silva_2021,RNNs,Modern
+Silva_2021,kmeans,Classic
+Silva_2021,Genetic / Evolutionary algorithms,Classic
+Silva_2021,Decision trees,Classic
+Silva_2021,CNNs,Modern
+Silva_2021,Boosted trees,Classic
+Silva_2021,Random forests,Classic
+Silva_2021,kNN,Classic
+Silva_2021,Hidden Markov models,Classic
+Silva_2021,SVMs,Classic
+Nitoslawski_2021,Genetic / Evolutionary algorithms,Classic
+Nitoslawski_2021,Decision trees,Classic
+Nitoslawski_2021,CNNs,Modern
+Nitoslawski_2021,Boosted trees,Classic
+Nitoslawski_2021,Random forests,Classic
+Nitoslawski_2021,kNN,Classic
+Nitoslawski_2021,Hidden Markov models,Classic
+Nitoslawski_2021,SVMs,Classic
+Lurig_2021,RNNs,Modern
+Lurig_2021,Random forests,Classic
+Lurig_2021,kmeans,Classic
+Corcoran_2021,SVMs,Classic
+Corcoran_2021,CNNs,Modern
+Christin_2019,RNNs,Modern
+Christin_2019,Genetic / Evolutionary algorithms,Classic
+Christin_2019,CNNs,Modern
+Christin_2019,Random forests,Classic
+Christin_2019,Autoencoder,Modern
+Christin_2019,SVMs,Classic
+Gobeyn_2019,Genetic / Evolutionary algorithms,Classic
+Gobeyn_2019,Decision trees,Classic
+Gobeyn_2019,ANNs,Modern
+Gobeyn_2019,Random forests,Classic
+Dujon_2019,kmeans,Classic
+Dujon_2019,Decision trees,Classic
+Dujon_2019,CNNs,Modern
+Dujon_2019,Boosted trees,Classic
+Dujon_2019,Random forests,Classic
+Dujon_2019,SVMs,Classic
+Liu_2018,kmeans,Classic
+Liu_2018,Decision trees,Classic
+Liu_2018,ANNs,Modern
+Liu_2018,CNNs,Modern
+Liu_2018,kNN,Classic
+Liu_2018,SVMs,Classic
+Weinstein_2017,SVMs,Classic
+Weinstein_2017,CNNs,Modern
+Kulicki_2024,GNNs,Modern
+Kulicki_2024,Decision trees,Classic
+Kulicki_2024,CNNs,Modern
+Kulicki_2024,Random forests,Classic
+Kulicki_2024,kNN,Classic
+Kulicki_2024,Autoencoder,Modern
+Kulicki_2024,SVMs,Classic
+Bose_2025,RNNs,Modern
+Bose_2025,kmeans,Classic
+Bose_2025,Genetic / Evolutionary algorithms,Classic
+Bose_2025,CNNs,Modern
+Bose_2025,Random forests,Classic
+Bose_2025,kNN,Classic
+Bose_2025,SVMs,Classic
+Mkuzi_2025,Random forests,Classic
+Mkuzi_2025,ANNs,Modern
+Mkuzi_2025,SVMs,Classic
+Gallerani_2025,Random forests,Classic
+Gallerani_2025,CNNs,Modern
+Liu_2025,Genetic / Evolutionary algorithms,Classic
+Liu_2025,Decision trees,Classic
+Liu_2025,ANNs,Modern
+Liu_2025,CNNs,Modern
+Liu_2025,Boosted trees,Classic
+Liu_2025,Random forests,Classic
+Liu_2025,Transformers / LLMs,Contemporary
+Liu_2025,Autoencoder,Modern
+Liu_2025,SVMs,Classic
+Xu_2025,RNNs,Modern
+Xu_2025,Decision trees,Classic
+Xu_2025,CNNs,Modern
+Xu_2025,Random forests,Classic
+Xu_2025,kNN,Classic
+Xu_2025,SVMs,Classic
+Kyalo_2025,RNNs,Modern
+Kyalo_2025,kmeans,Classic
+Kyalo_2025,Decision trees,Classic
+Kyalo_2025,CNNs,Modern
+Kyalo_2025,Boosted trees,Classic
+Kyalo_2025,Hidden Markov models,Classic
+Kyalo_2025,Random forests,Classic
+Kyalo_2025,kNN,Classic
+Kyalo_2025,Autoencoder,Modern
+Kyalo_2025,SVMs,Classic
+Wu_2025,kmeans,Classic
+Wu_2025,Decision trees,Classic
+Wu_2025,ANNs,Modern
+Wu_2025,CNNs,Modern
+Wu_2025,Random forests,Classic
+Wu_2025,kNN,Classic
+Wu_2025,SVMs,Classic
+Suleman_2025,RNNs,Modern
+Suleman_2025,Decision trees,Classic
+Suleman_2025,CNNs,Modern
+Suleman_2025,Random forests,Classic
+Suleman_2025,kNN,Classic
+Suleman_2025,SVMs,Classic
+Morante-Carballo_2025,Genetic / Evolutionary algorithms,Classic
+Morante-Carballo_2025,CNNs,Modern
+Morante-Carballo_2025,Random forests,Classic
+Morante-Carballo_2025,SVMs,Classic
+Ozcan_2024,Random forests,Classic
+Ozcan_2024,ANNs,Modern
+Ozcan_2024,SVMs,Classic
+Bao_2024,Genetic / Evolutionary algorithms,Classic
+Bao_2024,CNNs,Modern
+Bao_2024,Random forests,Classic
+Bao_2024,SVMs,Classic
+Zhong_2024,RNNs,Modern
+Zhong_2024,CNNs,Modern
+Zhong_2024,Random forests,Classic
+Zhong_2024,Transformers / LLMs,Contemporary
+Zhong_2024,kNN,Classic
+Zhong_2024,SVMs,Classic
+Cardenas_2024,CNNs,Modern
+Cardenas_2024,Random forests,Classic
+Cardenas_2024,kNN,Classic
+Cardenas_2024,SVMs,Classic
+Xu_2024,kmeans,Classic
+Xu_2024,GNNs,Modern
+Xu_2024,CNNs,Modern
+Xu_2024,SVMs,Classic
+Ma_2024,RNNs,Modern
+Ma_2024,CNNs,Modern
+Ma_2024,Random forests,Classic
+Ma_2024,Transformers / LLMs,Contemporary
+Ma_2024,Autoencoder,Modern
+Matyukira_2024,kmeans,Classic
+Matyukira_2024,Genetic / Evolutionary algorithms,Classic
+Matyukira_2024,Decision trees,Classic
+Matyukira_2024,CNNs,Modern
+Matyukira_2024,Boosted trees,Classic
+Matyukira_2024,Random forests,Classic
+Matyukira_2024,SVMs,Classic
+Safonova_2023,GNNs,Modern
+Safonova_2023,CNNs,Modern
+Safonova_2023,Random forests,Classic
+Safonova_2023,Transformers / LLMs,Contemporary
+Safonova_2023,kNN,Classic
+Lee_2023,RNNs,Modern
+Lee_2023,Genetic / Evolutionary algorithms,Classic
+Lee_2023,Decision trees,Classic
+Lee_2023,CNNs,Modern
+Lee_2023,Boosted trees,Classic
+Lee_2023,Random forests,Classic
+Lee_2023,kNN,Classic
+Lee_2023,Autoencoder,Modern
+Lee_2023,SVMs,Classic
+Hirchmugl_2023,CNNs,Modern
+Hirchmugl_2023,Boosted trees,Classic
+Hirchmugl_2023,Random forests,Classic
+Hirchmugl_2023,kNN,Classic
+Hirchmugl_2023,SVMs,Classic
+Veiga-Branco_2023,RNNs,Modern
+Veiga-Branco_2023,Genetic / Evolutionary algorithms,Classic
+Veiga-Branco_2023,Decision trees,Classic
+Veiga-Branco_2023,ANNs,Modern
+Veiga-Branco_2023,Boosted trees,Classic
+Veiga-Branco_2023,Hidden Markov models,Classic
+Veiga-Branco_2023,SVMs,Classic
+Pillodar_2023,ANNs,Modern
+Pillodar_2023,Random forests,Classic
+Pillodar_2023,kNN,Classic
+Pillodar_2023,SVMs,Classic
+Mulugeta_2024,SVMs,Classic
+Mulugeta_2024,CNNs,Modern
+Kerry_2022,kNN,Classic
+Kerry_2022,Random forests,Classic
+Kerry_2022,CNNs,Modern
+Katal_2022,Random forests,Classic
+Katal_2022,SVMs,Classic
+Katal_2022,CNNs,Modern
+Amarathunga_2021,Decision trees,Classic
+Amarathunga_2021,CNNs,Modern
+Amarathunga_2021,kNN,Classic
+Amarathunga_2021,SVMs,Classic
+Rana_2021,RNNs,Modern
+Rana_2021,kmeans,Classic
+Rana_2021,Decision trees,Classic
+Rana_2021,CNNs,Modern
+Rana_2021,Random forests,Classic
+Rana_2021,Hidden Markov models,Classic
+Rana_2021,SVMs,Classic
+Houinato_2025,CNNs,Modern
+Houinato_2025,Random forests,Classic
+Houinato_2025,kNN,Classic
+Houinato_2025,SVMs,Classic
+Lee_2025,RNNs,Modern
+Lee_2025,Decision trees,Classic
+Lee_2025,CNNs,Modern
+Lee_2025,Random forests,Classic
+Lee_2025,kNN,Classic
+Lee_2025,SVMs,Classic
+Shivaprakash_2022,Random forests,Classic
+Shivaprakash_2022,CNNs,Modern
+Hayes_2025,Genetic / Evolutionary algorithms,Classic
+Hayes_2025,CNNs,Modern
+Hayes_2025,Boosted trees,Classic
+Hayes_2025,Random forests,Classic
+Hayes_2025,kNN,Classic
+Hayes_2025,SVMs,Classic
+MacielPelanda_2025,RNNs,Modern
+MacielPelanda_2025,CNNs,Modern
+MacielPelanda_2025,kNN,Classic
+MacielPelanda_2025,Autoencoder,Modern
+MacielPelanda_2025,SVMs,Classic
+Campbell_2025,RNNs,Modern
+Campbell_2025,kmeans,Classic
+Campbell_2025,Genetic / Evolutionary algorithms,Classic
+Campbell_2025,Decision trees,Classic
+Campbell_2025,CNNs,Modern
+Campbell_2025,Boosted trees,Classic
+Campbell_2025,Random forests,Classic
+Campbell_2025,kNN,Classic
+Campbell_2025,SVMs,Classic

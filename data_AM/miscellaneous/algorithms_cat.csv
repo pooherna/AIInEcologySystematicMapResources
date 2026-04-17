@@ -1,0 +1,15 @@
+Algorithm,Count,Era
+CNNs,57,Modern
+Random forests,55,Classic
+SVMs,55,Classic
+kNN,34,Classic
+RNNs,27,Modern
+Decision trees,25,Classic
+Genetic / Evolutionary algorithms,23,Classic
+Boosted trees,17,Classic
+ANNs,15,Modern
+Transformers / LLMs,14,Contemporary
+kmeans,14,Classic
+Hidden Markov models,13,Classic
+Autoencoder,10,Modern
+GNNs,4,Modern
