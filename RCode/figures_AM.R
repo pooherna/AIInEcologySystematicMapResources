@@ -28,29 +28,10 @@ dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
 message("Writing figures to: ", normalizePath(out_dir))
 
-pal_main <- c(
-  blue = "#3B6EA8",
-  teal = "#4B9A8D",
-  green = "#7FA35B",
-  gold = "#D6A24A",
-  rose = "#B76D68",
-  slate = "#6D7783",
-  plum = "#8A6FA8"
-)
 
-pal_era <- c(
-  "Classic" = "#4B9A8D",
-  "Modern" = "#3B6EA8",
-  "Contemporary" = "#D6A24A",
-  "not specified" = "#A7A7A7"
-)
-
-pal_appraisal <- c(
-  "Yes" = "#49a79a",
-  "Partially" = "#E9C46A",
-  "No" = "#de5a53",
-  "NA" = "#9C9C9C"
-)
+####
+# >> functions ----
+####
 
 theme_am <- function(base_size = 9) {
   theme_classic(base_size = base_size) +
@@ -117,8 +98,34 @@ check_rows <- function(dat, expected, label) {
   }
 }
 
+
+# >> colours ----
+pal_main <- c(
+  blue = "#3B6EA8",
+  teal = "#4B9A8D",
+  green = "#7FA35B",
+  gold = "#D6A24A",
+  rose = "#B76D68",
+  slate = "#6D7783",
+  plum = "#8A6FA8"
+)
+
+pal_era <- c(
+  "Classic" = "#4B9A8D",
+  "Modern" = "#3B6EA8",
+  "Contemporary" = "#D6A24A",
+  "not specified" = "#A7A7A7"
+)
+
+pal_appraisal <- c(
+  "Yes" = "#49a79a",
+  "Partially" = "#E9C46A",
+  "No" = "#de5a53",
+  "NA" = "#9C9C9C"
+)
+
 ####
-# >> Data ----
+# >> data ----
 ####
 
 map_data <- read_excel(file.path(data_dir, "map_20260416.xlsx"))
@@ -782,7 +789,7 @@ fig_chord_all <- ggdraw() +
   draw_image(img_all, x = 0, y = 0, width = 1, height = 1) +
   theme(plot.margin = margin(0, 0, 0, 0))
 
-## >> plot ----
+## >> plot bibliometrics figures ----
 fig_map
 fig_chord_18
 fig_chord_all
@@ -790,6 +797,11 @@ fig_chord_all
 fig_bibliometrics <- (fig_map / fig_chord_18)
 fig_bibliometrics
 
+
+####
+# >> save plots ----
+####
+# example…
 save_figure(
   plot = fig_bibliometrics,
   name = "Figure_bibliometrics",
