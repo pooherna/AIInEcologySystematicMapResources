@@ -9,7 +9,6 @@ library(patchwork)
 library(scales)
 library(ComplexUpset)
 library(ggalluvial)
-library(treemapify)
 library(UpSetR)
 library(bibliometrix)
 library(circlize)
@@ -24,12 +23,8 @@ rm(list = ls())
 gc()  
 
 data_dir <- "data_AM"
-out_dir <- "figures_AM"
+out_dir <- "Figures_AM"
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
-pdf_dir <- file.path(out_dir, "pdf")
-png_dir <- file.path(out_dir, "png")
-dir.create(pdf_dir, showWarnings = FALSE, recursive = TRUE)
-dir.create(png_dir, showWarnings = FALSE, recursive = TRUE)
 
 message("Writing figures to: ", normalizePath(out_dir))
 
@@ -56,22 +51,10 @@ theme_am <- function(base_size = 9) {
 }
 
 save_figure <- function(plot, name, width, height, dpi = 600) {
-  pdf_file <- file.path(pdf_dir, paste0(name, ".pdf"))
-  png_file <- file.path(png_dir, paste0(name, ".png"))
-
-  if (inherits(plot, "upset")) {
-    cairo_pdf(pdf_file, width = width, height = height)
-    print(plot)
-    dev.off()
-
-    png(png_file, width = width, height = height, units = "in", res = dpi, bg = "white")
-    print(plot)
-    dev.off()
-  } else {
-    ggsave(pdf_file, plot, width = width, height = height, device = cairo_pdf)
-    ggsave(png_file, plot, width = width, height = height, dpi = dpi, bg = "white")
-  }
-
+  pdf_file <- file.path(out_dir, paste0(name, ".pdf"))
+  png_file <- file.path(out_dir, paste0(name, ".png"))
+  ggsave(pdf_file, plot, width = width, height = height, device = cairo_pdf)
+  ggsave(png_file, plot, width = width, height = height, dpi = dpi, bg = "white")
   message("Saved ", pdf_file)
   message("Saved ", png_file)
 }
@@ -86,96 +69,6 @@ clean_title <- function(x) {
     str_replace_all("_", " ") |>
     str_replace_all("\\s+", " ") |>
     str_trim()
-}
-
-split_multi <- function(x) {
-  x |>
-    str_replace_all(";", ",") |>
-    str_squish()
-}
-
-extract_year <- function(x) {
-  as.integer(str_extract(x, "\\d{4}"))
-}
-
-prep_two_way_counts <- function(dat, var1, var2, split1 = TRUE, split2 = TRUE) {
-  out <- dat |>
-    select(all_of(c(col_id, var1, var2))) |>
-    rename(
-      StudyID = all_of(col_id),
-      Var1 = all_of(var1),
-      Var2 = all_of(var2)
-    ) |>
-    filter(
-      !is.na(Var1), Var1 != "",
-      !is.na(Var2), Var2 != ""
-    ) |>
-    mutate(
-      Var1 = split_multi(Var1),
-      Var2 = split_multi(Var2)
-    )
-
-  if (split1) {
-    out <- out |> separate_rows(Var1, sep = ",\\s*")
-  }
-  if (split2) {
-    out <- out |> separate_rows(Var2, sep = ",\\s*")
-  }
-
-  out |>
-    mutate(
-      Var1 = str_squish(Var1),
-      Var2 = str_squish(Var2)
-    ) |>
-    filter(Var1 != "", Var2 != "") |>
-    count(Var1, Var2, name = "n") |>
-    ungroup()
-}
-
-prep_alluvial_counts <- function(dat, vars, split_flags = NULL) {
-  tmp <- dat |>
-    select(all_of(c(col_id, vars)))
-
-  names(tmp) <- c("StudyID", paste0("V", seq_along(vars)))
-
-  for (i in seq_along(vars)) {
-    tmp[[paste0("V", i)]] <- split_multi(tmp[[paste0("V", i)]])
-  }
-
-  keep <- rep(TRUE, nrow(tmp))
-  for (i in seq_along(vars)) {
-    keep <- keep & !is.na(tmp[[paste0("V", i)]]) & tmp[[paste0("V", i)]] != ""
-  }
-  tmp <- tmp[keep, , drop = FALSE]
-
-  if (is.null(split_flags)) {
-    split_flags <- rep(TRUE, length(vars))
-  }
-
-  for (i in seq_along(vars)) {
-    if (split_flags[i]) {
-      tmp <- tmp |> separate_rows(all_of(paste0("V", i)), sep = ",\\s*")
-    }
-  }
-
-  for (i in seq_along(vars)) {
-    tmp[[paste0("V", i)]] <- str_squish(tmp[[paste0("V", i)]])
-  }
-
-  tmp |>
-    filter(if_all(starts_with("V"), ~ .x != "")) |>
-    count(across(starts_with("V")), name = "Freq") |>
-    ungroup()
-}
-
-make_discrete_palette <- function(values) {
-  values <- as.character(values)
-  values <- values[!is.na(values)]
-  values <- unique(values)
-  if (length(values) == 0) {
-    return(character())
-  }
-  setNames(colorRampPalette(unname(pal_main))(length(values)), values)
 }
 
 plot_bar <- function(dat, category, title, fill = pal_main[["blue"]], n_total = 72) {
@@ -232,7 +125,7 @@ pal_appraisal <- c(
 )
 
 ####
-# > data ----
+# >> data ----
 ####
 
 map_data <- read_excel(file.path(data_dir, "map_20260416.xlsx"))
@@ -264,11 +157,14 @@ message(
 )
 
 ####
-# > upset, bar, and sanky ----
+# >> upset, bar, etc. ----
 ####
 
+names(map_data)
+map_data$`Broad category of the task or goal the AI models are used for`
+
 ####
-## > upset -----
+## >> upset -----
 ####
 algo_upset <- as.data.table(dat_algorithms)[
   , .(present = 1L), by = .(FileID, Algorithm)] |>
@@ -356,11 +252,10 @@ fig_source_upset <- UpSetR::upset(as.data.frame(source_upset),
 )
 
 ####
-## > bar -----
+## >> bar -----
 ####
 
 #' *the total number of papers is not consistent among long format data…*
-# -> Sergio did not include NA??
 # n_reviews <- nrow(map_data) 
 
 algo_bar <- as.data.table(dat_algorithms)[
@@ -371,10 +266,10 @@ bar_algorithm <- ggplot(
   algo_bar,
   aes(x = reorder(Algorithm, n_studies), y = n_studies)
 ) +
-  geom_col(fill = pal_main[["blue"]]) +
+  geom_col(fill = "#53868B") +
   coord_flip() +
   labs(x = NULL, y = "Number of studies") +
-  theme_am()
+  theme_classic()
 
 algo_counts <- dat_algorithms |>
   distinct(FileID, Algorithm, Era) |>
@@ -425,14 +320,14 @@ bar_era <- dat_algorithms |>
   theme(plot.title = element_text(size = 9.5))
 
 
-####
-## > sankey ----
-####
+## >> sankey ----
+
 
 alg <- as.data.table(dat_algorithms)[, .(FileID, Era)] |> unique()
 tsk <- as.data.table(dat_task)[, .(FileID, Task)] |> unique()
 mod <- as.data.table(dat_modality)[, .(FileID, `Data Modality`)] |> unique()
 src <- as.data.table(dat_source)[, .(FileID, `Source of Data`)] |> unique()
+
 
 dat_alluvial_original <- alg[tsk, on = "FileID", allow.cartesian = TRUE][
   mod, on = "FileID", allow.cartesian = TRUE][
@@ -461,13 +356,8 @@ fig_sankey_original <- ggplot(
   ) +
   scale_fill_manual(values = pal_era, drop = FALSE) +
   labs(y = "Count", x = NULL) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks = element_blank(),
-    legend.position = "bottom"
-  )
+  theme_classic()
+
 
 ## ##
 
@@ -521,8 +411,7 @@ fig_sankey_3var <- ggplot(
     y = "Number of records",
     fill = "Biological domain"
   ) +
-  scale_fill_manual(values = make_discrete_palette(levels(dat_3var$Domain)), drop = FALSE) +
-  theme_am(base_size = 9) +
+  theme_minimal(base_size = 11) +
   theme(
     panel.grid = element_blank(),
     axis.text.y = element_blank(),
@@ -530,354 +419,26 @@ fig_sankey_3var <- ggplot(
     legend.position = "bottom"
   )
 
-## ##
+fig_sankey_3var
 
-domain_data_model_counts <- prep_alluvial_counts(
-  map_data,
-  vars = c(col_domain, col_data, col_model),
-  split_flags = c(TRUE, TRUE, TRUE)
-) |>
-  rename(
-    Domain = V1,
-    DataType = V2,
-    Model = V3
-  ) |>
-  mutate(
-    Domain = fct_reorder(Domain, Freq, .fun = sum, .desc = TRUE),
-    DataType = fct_reorder(DataType, Freq, .fun = sum, .desc = TRUE),
-    Model = fct_reorder(Model, Freq, .fun = sum, .desc = TRUE)
-  )
+# > others ----
 
-fig_sankey_domain_data_model <- ggplot(
-  domain_data_model_counts,
-  aes(axis1 = Domain, axis2 = DataType, axis3 = Model, y = Freq)
-) +
-  geom_alluvium(aes(fill = Domain), width = 0.16, alpha = 0.75) +
-  geom_stratum(width = 0.16, fill = "grey90", color = "grey40") +
-  geom_text(
-    stat = "stratum",
-    aes(label = after_stat(stratum)),
-    size = 3
-  ) +
-  scale_x_discrete(
-    limits = c("Biological domain", "Data type", "AI model category"),
-    expand = c(0.06, 0.06)
-  ) +
-  scale_fill_manual(values = make_discrete_palette(levels(domain_data_model_counts$Domain)), drop = FALSE) +
-  labs(
-    x = NULL,
-    y = "Number of records",
-    fill = "Biological domain"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks = element_blank(),
-    legend.position = "bottom"
-  )
 
-## > others  ----
 
-col_model <- "Broad category of AI models discussed"
-col_review <- "The main type of secondary review"
 
-### > domain by task heatmap ----
-domain_task_counts <- prep_two_way_counts(
-  map_data,
-  var1 = col_domain,
-  var2 = col_task,
-  split1 = TRUE,
-  split2 = TRUE
-)
-
-domain_levels_by_task_total <- domain_task_counts |>
-  group_by(Var1) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var1)
-
-task_levels_by_domain_total <- domain_task_counts |>
-  group_by(Var2) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var2)
-
-domain_task_counts <- domain_task_counts |>
-  mutate(
-    Var1 = factor(Var1, levels = domain_levels_by_task_total),
-    Var2 = factor(Var2, levels = task_levels_by_domain_total)
-  )
-
-fig_heat_domain_task <- ggplot(domain_task_counts, aes(x = Var2, y = Var1, fill = n)) +
-  geom_tile(color = "white", linewidth = 0.3) +
-  geom_text(aes(label = n), size = 2.7, color = "#222222") +
-  scale_fill_gradient(low = "#F4F4F4", high = pal_main[["blue"]]) +
-  labs(
-    x = "Task category",
-    y = "Primary biological domain",
-    fill = "Count"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid = element_blank(),
-    axis.text.x = element_text(angle = 35, hjust = 1),
-    legend.position = "right"
-  )
-
-### > domain by data stacked bar ----
-domain_data_counts <- prep_two_way_counts(
-  map_data,
-  var1 = col_domain,
-  var2 = col_data,
-  split1 = TRUE,
-  split2 = TRUE
-)
-
-domain_levels_by_data_total <- domain_data_counts |>
-  group_by(Var1) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var1)
-
-data_levels_by_domain_total <- domain_data_counts |>
-  group_by(Var2) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var2)
-
-domain_data_counts <- domain_data_counts |>
-  mutate(
-    Var1 = factor(Var1, levels = domain_levels_by_data_total),
-    Var2 = factor(Var2, levels = data_levels_by_domain_total)
-  )
-
-fig_stack_domain_data <- ggplot(domain_data_counts, aes(x = Var1, y = n, fill = Var2)) +
-  geom_col(width = 0.8) +
-  scale_fill_manual(values = make_discrete_palette(data_levels_by_domain_total), drop = FALSE) +
-  labs(
-    x = "Primary biological domain",
-    y = "Number of studies",
-    fill = "Data category"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    axis.text.x = element_text(angle = 35, hjust = 1),
-    legend.position = "bottom"
-  )
-
-### > task by data bubble plot ----
-task_data_counts <- prep_two_way_counts(
-  map_data,
-  var1 = col_task,
-  var2 = col_data,
-  split1 = TRUE,
-  split2 = TRUE
-)
-
-task_levels_by_data_total <- task_data_counts |>
-  group_by(Var1) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var1)
-
-data_levels_by_task_total <- task_data_counts |>
-  group_by(Var2) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var2)
-
-task_data_counts <- task_data_counts |>
-  mutate(
-    Var1 = factor(Var1, levels = task_levels_by_data_total),
-    Var2 = factor(Var2, levels = data_levels_by_task_total)
-  )
-
-fig_bubble_task_data <- ggplot(task_data_counts, aes(x = Var1, y = Var2, size = n)) +
-  geom_point(color = pal_main[["blue"]], alpha = 0.75) +
-  scale_size_area(max_size = 14) +
-  labs(
-    x = "Task category",
-    y = "Data category",
-    size = "Count"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid.major = element_line(color = "#EAEAEA", linewidth = 0.25),
-    axis.text.x = element_text(angle = 35, hjust = 1),
-    legend.position = "right"
-  )
-
-### > task by model heatmap ----
-task_model_counts <- prep_two_way_counts(
-  map_data,
-  var1 = col_task,
-  var2 = col_model,
-  split1 = TRUE,
-  split2 = TRUE
-)
-
-task_levels_by_model_total <- task_model_counts |>
-  group_by(Var1) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var1)
-
-model_levels_by_task_total <- task_model_counts |>
-  group_by(Var2) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Var2)
-
-task_model_counts <- task_model_counts |>
-  mutate(
-    Var1 = factor(Var1, levels = task_levels_by_model_total),
-    Var2 = factor(Var2, levels = model_levels_by_task_total)
-  )
-
-fig_heat_task_model <- ggplot(task_model_counts, aes(x = Var2, y = Var1, fill = n)) +
-  geom_tile(color = "white", linewidth = 0.3) +
-  geom_text(aes(label = n), size = 2.7, color = "#222222") +
-  scale_fill_gradient(low = "#F4F4F4", high = pal_main[["blue"]]) +
-  labs(
-    x = "AI model category",
-    y = "Task category",
-    fill = "Count"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid = element_blank(),
-    axis.text.x = element_text(angle = 35, hjust = 1),
-    legend.position = "right"
-  )
-
-### > year by domain ----
-year_domain_counts <- map_data |>
-  select(all_of(c(col_id, col_domain))) |>
-  rename(
-    StudyID = all_of(col_id),
-    Domain = all_of(col_domain)
-  ) |>
-  mutate(
-    Year = extract_year(StudyID),
-    Domain = split_multi(Domain)
-  ) |>
-  filter(!is.na(Year), !is.na(Domain), Domain != "") |>
-  separate_rows(Domain, sep = ",\\s*") |>
-  mutate(Domain = str_squish(Domain)) |>
-  count(Year, Domain, name = "n") |>
-  ungroup()
-
-domain_levels_by_year_total <- year_domain_counts |>
-  group_by(Domain) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Domain)
-
-year_domain_counts <- year_domain_counts |>
-  mutate(Domain = factor(Domain, levels = domain_levels_by_year_total))
-
-fig_year_domain <- ggplot(year_domain_counts, aes(x = Year, y = n, fill = Domain)) +
-  geom_col(width = 0.8) +
-  scale_x_continuous(breaks = sort(unique(year_domain_counts$Year))) +
-  scale_fill_manual(values = make_discrete_palette(domain_levels_by_year_total), drop = FALSE) +
-  labs(
-    x = "Year",
-    y = "Count",
-    fill = "Primary biological domain"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    legend.position = "bottom"
-  )
-
-### > year by model ----
-year_model_counts <- map_data |>
-  select(all_of(c(col_id, col_model))) |>
-  rename(
-    StudyID = all_of(col_id),
-    Model = all_of(col_model)
-  ) |>
-  mutate(
-    Year = extract_year(StudyID),
-    Model = split_multi(Model)
-  ) |>
-  filter(!is.na(Year), !is.na(Model), Model != "") |>
-  separate_rows(Model, sep = ",\\s*") |>
-  mutate(Model = str_squish(Model)) |>
-  count(Year, Model, name = "n") |>
-  ungroup()
-
-model_levels_by_year_total <- year_model_counts |>
-  group_by(Model) |>
-  summarise(total = sum(n), .groups = "drop") |>
-  arrange(desc(total)) |>
-  pull(Model)
-
-year_model_counts <- year_model_counts |>
-  mutate(Model = factor(Model, levels = model_levels_by_year_total))
-
-fig_year_model <- ggplot(year_model_counts, aes(x = Year, y = n, fill = Model)) +
-  geom_col(width = 0.8) +
-  scale_x_continuous(breaks = sort(unique(year_model_counts$Year))) +
-  scale_fill_manual(values = make_discrete_palette(model_levels_by_year_total), drop = FALSE) +
-  labs(
-    x = "Year",
-    y = "Count",
-    fill = "AI model category"
-  ) +
-  theme_am(base_size = 9) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    legend.position = "bottom"
-  )
-
-### > review type treemap ----
-review_type_counts <- map_data |>
-  select(all_of(col_review)) |>
-  rename(ReviewType = all_of(col_review)) |>
-  filter(!is.na(ReviewType), ReviewType != "") |>
-  mutate(ReviewType = str_squish(ReviewType)) |>
-  count(ReviewType, name = "n") |>
-  arrange(desc(n))
-
-fig_treemap_review <- ggplot(
-  review_type_counts,
-  aes(area = n, fill = ReviewType, label = paste0(ReviewType, "\n(n = ", n, ")"))
-) +
-  geom_treemap() +
-  geom_treemap_text(
-    colour = "white",
-    place = "centre",
-    reflow = TRUE,
-    min.size = 3.5
-  ) +
-  scale_fill_manual(values = make_discrete_palette(review_type_counts$ReviewType), drop = FALSE) +
-  labs(fill = "Review type") +
-  theme_am(base_size = 9) +
-  theme(
-    axis.line = element_blank(),
-    axis.text = element_blank(),
-    axis.title = element_blank(),
-    axis.ticks = element_blank(),
-    legend.position = "none",
-    panel.grid = element_blank()
-  )
 
 ####
-## > plot map variables ----
+## >> plot map variables ----
 ####
 
-### > upset ----
+### >> upset ----
 fig_algorithm 
 fig_era_upset
 fig_task_upset 
 fig_modality_upset
 fig_source_upset
 
-### > bar ------
+### >> bar ------
 
 bar_algorithm
 bar_algo_era
@@ -887,31 +448,13 @@ bar_source
 bar_training
 bar_era
 
-### > sankey -----
-
+### >> sankey -----
 fig_sankey_original
-fig_sankey_3var
-fig_sankey_domain_data_model
-
-### > others ----
-
-fig_heat_domain_task
-fig_stack_domain_data
-
-fig_bubble_task_data
-
-fig_heat_task_model
-
-fig_year_domain
-fig_year_model
-
-fig_treemap_review
 
 
 ####
 # > Critical appraisal -----
 ####
-
 n_reviews <- nrow(map_data)
 study_col <- "Study ID (format: first author_year_letterIfNeeded )"
 item_cols <- names(appraisal_data)[5:ncol(appraisal_data)]
@@ -1062,7 +605,7 @@ fig_appraisal_2025
 # > Bibliometrics -----
 ####
 
-## > world map ----
+## >> world map ----
 
 extract_first_last <- function(author_list) {
   authors <- strsplit(author_list, ";")[[1]]
@@ -1131,7 +674,7 @@ fig_map <- ggplot(world) +
 fig_map
 
 
-## > collaboration ----
+## >> collaboration ----
 bib_data <- convert2df(file.path(data_dir, "scopusData.bib"), dbsource = "scopus", format = "bibtex")
 bib_data <- metaTagExtraction(bib_data, Field = "AU_CO", sep = ";")
 
@@ -1153,7 +696,7 @@ colnames(net_matrix)[colnames(net_matrix) == "United Kingdom"] <- "UK"
 
 country_strength <- rowSums(net_matrix) + colSums(net_matrix)
 
-### > top 18 -----
+### >> top 18 -----
 keep_countries_18 <- names(sort(country_strength[country_strength > 0], decreasing = TRUE))[1:min(18, sum(country_strength > 0))]
 net_matrix_keep_18 <- net_matrix[keep_countries_18, keep_countries_18, drop = FALSE]
 net_matrix_keep_18 <- net_matrix_keep_18[rowSums(net_matrix_keep_18) + colSums(net_matrix_keep_18) > 0,
@@ -1167,7 +710,7 @@ chord_cols_18 <- setNames(
   rownames(net_matrix_keep_18)
 )
 
-chord_png_18 <- file.path(tempdir(), "Figure_5_chord_temp.png")
+chord_png_18 <- file.path(out_dir, "Figure_5_chord_temp.png")
 png(chord_png_18, width = 5400, height = 5400, res = 450, bg = "white")
 par(mar = c(0.5, 0.5, 0.5, 0.5))
 circos.clear()
@@ -1213,7 +756,7 @@ fig_chord_18 <- ggdraw() +
   theme(plot.margin = margin(0, 0, 0, 0))
 
 
-### > all ----
+### >> all ----
 
 keep_all <- names(country_strength[country_strength > 0])
 net_matrix_all <- net_matrix[keep_all, keep_all, drop = FALSE]
@@ -1267,7 +810,7 @@ cols_all <- setNames(
   rownames(net_matrix_all)
   )
 
-chord_png_all <- file.path(tempdir(), "Figure_chord_allcountries_temp.png")
+chord_png_all <- file.path(out_dir, "Figure_chord_allcountries_temp.png")
 
 png(chord_png_all, width = 5000, height = 5000, res = 500, bg = "white")
 par(mar = c(0.5, 0.5, 0.5, 0.5))
@@ -1320,7 +863,7 @@ fig_chord_all <- ggdraw() +
   draw_image(img_all, x = 0, y = 0, width = 1, height = 1) +
   theme(plot.margin = margin(0, 0, 0, 0))
 
-## > plot bibliometrics figures ----
+## >> plot bibliometrics figures ----
 fig_map
 fig_chord_18
 fig_chord_all
@@ -1330,40 +873,12 @@ fig_bibliometrics
 
 
 ####
-# > save plots ----
+# >> save plots ----
 ####
-
-save_figure(fig_algorithm, "Figure_algorithm_upset", width = 8, height = 6)
-save_figure(fig_era_upset, "Figure_era_upset", width = 8, height = 6)
-save_figure(fig_task_upset, "Figure_task_upset", width = 8, height = 6)
-save_figure(fig_modality_upset, "Figure_modality_upset", width = 8, height = 6)
-save_figure(fig_source_upset, "Figure_source_upset", width = 8, height = 6)
-
-save_figure(bar_algorithm, "Figure_algorithm_bar", width = 7, height = 5)
-save_figure(bar_algo_era, "Figure_algorithm_era_bar", width = 8, height = 5.5)
-save_figure(bar_task, "Figure_task_bar", width = 7, height = 5)
-save_figure(bar_modality, "Figure_modality_bar", width = 7, height = 5)
-save_figure(bar_source, "Figure_source_bar", width = 7, height = 5)
-save_figure(bar_training, "Figure_training_bar", width = 7, height = 5)
-save_figure(bar_era, "Figure_era_bar", width = 7, height = 5)
-
-save_figure(fig_sankey_original, "Figure_sankey_original", width = 12, height = 8)
-save_figure(fig_sankey_3var, "Figure_sankey_3var", width = 11, height = 7.5)
-save_figure(fig_sankey_domain_data_model, "Figure_sankey_domain_data_model", width = 11, height = 7.5)
-
-save_figure(fig_heat_domain_task, "Figure_heat_domain_task", width = 8, height = 5.5)
-save_figure(fig_stack_domain_data, "Figure_stack_domain_data", width = 8.5, height = 5.5)
-save_figure(fig_bubble_task_data, "Figure_bubble_task_data", width = 8.5, height = 6)
-save_figure(fig_heat_task_model, "Figure_heat_task_model", width = 8.5, height = 6)
-save_figure(fig_year_domain, "Figure_year_domain", width = 8.5, height = 5.5)
-save_figure(fig_year_model, "Figure_year_model", width = 8.5, height = 5.5)
-save_figure(fig_treemap_review, "Figure_treemap_review", width = 7, height = 5)
-
-save_figure(fig_appraisal_all, "Figure_appraisal_all", width = 8.5, height = 6)
-save_figure(fig_appraisal_pre2025, "Figure_appraisal_pre2025", width = 8.5, height = 6)
-save_figure(fig_appraisal_2025, "Figure_appraisal_2025", width = 8.5, height = 6)
-
-save_figure(fig_map, "Figure_map", width = 9, height = 5)
-save_figure(fig_chord_18, "Figure_chord_18", width = 7, height = 7)
-save_figure(fig_chord_all, "Figure_chord_all", width = 8, height = 8)
-save_figure(fig_bibliometrics, "Figure_bibliometrics", width = 10, height = 10)
+# example…
+save_figure(
+  plot = fig_bibliometrics,
+  name = "Figure_bibliometrics",
+  width = 10,
+  height = 10
+)
