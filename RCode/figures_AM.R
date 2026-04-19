@@ -865,6 +865,65 @@ fig_treemap_review <- ggplot(
     panel.grid = element_blank()
   )
 
+### included primary studies ----
+
+col_n_articles <- "Number of articles synthesized"
+
+dat_n_articles <- map_data |>
+  select(all_of(c(col_id, col_n_articles))) |>
+  rename(
+    StudyID = all_of(col_id),
+    N_articles = all_of(col_n_articles)
+  ) |>
+  mutate(
+    N_articles = as.numeric(N_articles),
+    Year = as.integer(stringr::str_extract(StudyID, "\\d{4}"))
+  ) |>
+  filter(!is.na(N_articles))
+
+fig_hist_articles <- ggplot(dat_n_articles, aes(x = N_articles)) +
+  geom_histogram(bins = 20, color = "white", fill = "#3B6EA8") +
+  labs(
+    x = "Number of articles synthesised",
+    y = "Count"
+  ) +
+  theme_classic(base_size = 11)
+
+col_domain <- "Primary biological domain(s) of focus"
+
+dat_box_domain <- map_data |>
+  select(all_of(c(col_n_articles, col_domain))) |>
+  rename(
+    N_articles = all_of(col_n_articles),
+    DomainType = all_of(col_domain)
+  ) |>
+  mutate(
+    N_articles = as.numeric(N_articles),
+    Domain = stringr::str_squish(DomainType)
+  ) |>
+  filter(!is.na(N_articles), !is.na(DomainType), DomainType != "")
+
+domain_order <- dat_box_domain |>
+  group_by(DomainType) |>
+  summarise(med = median(N_articles), .groups = "drop") |>
+  arrange(desc(med)) |>
+  pull(DomainType)
+
+dat_box_domain <- dat_box_domain |>
+  mutate(ReviewType = factor(DomainType, levels = domain_order))
+
+fig_box_domain <- ggplot(dat_box_domain, aes(x = DomainType, y = log10(N_articles))) +
+  geom_boxplot(outlier.alpha = 0.6) +
+  labs(
+    x = "Main type of focal domain",
+    y = "Number of articles synthesised (log10)"
+  ) +
+  theme_classic(base_size = 11) +
+  theme(
+    axis.text.x = element_text(angle = 35, hjust = 1)
+  )
+
+
 ####
 ## > plot map variables ----
 ####
@@ -905,6 +964,9 @@ fig_year_domain
 fig_year_model
 
 fig_treemap_review
+
+fig_hist_articles
+fig_box_domain
 
 
 ####
