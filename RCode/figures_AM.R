@@ -475,6 +475,8 @@ col_id <- "Study ID (format: first author_year_letterIfNeeded )"
 col_domain <- "Primary biological domain(s) of focus"
 col_task <- "Broad category of the task or goal the AI models are used for"
 col_data   <- "Categories of the data used for the AI models"
+col_model <- "Broad category of AI models discussed"
+col_review <- "The main type of secondary review"
 
 dat_3var <- map_data |>
   select(all_of(c(col_id, col_domain, col_task, col_data))) |>
@@ -578,9 +580,6 @@ fig_sankey_domain_data_model <- ggplot(
   )
 
 ## > others  ----
-
-col_model <- "Broad category of AI models discussed"
-col_review <- "The main type of secondary review"
 
 ### > domain by task heatmap ----
 domain_task_counts <- prep_two_way_counts(
