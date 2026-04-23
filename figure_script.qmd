@@ -2,16 +2,18 @@
 title: "Figure codes"
 date: today
 authors:
-  - name: Ayumi Mizuno…
+  - name: Ayumi Mizuno
     orcid: 0000-0003-0822-5637
-  # - name:
+  - name: Santiago Ortega
   #   orcid:
-  # - name:
+  - name: Eduardo S.A. Santos
   #   orcid:
-  # - name: Malgorzata Lagisz
-  #   orcid: 0000-0002-3993-6127
-  # - name: Shinichi Nakagawa
-  #   orcid: 0000-0002-7765-5182
+  - name: Sarah Young
+  #   orcid:
+  - name: Malgorzata Lagisz
+    orcid: 0000-0002-3993-6127
+  - name: Shinichi Nakagawa
+    orcid: 0000-0002-7765-5182
 format:
   html:
     toc: true
@@ -309,7 +311,7 @@ pal_appraisal <- c(
 
 # Figure 2: Yearly trend
 
-we used the following search string for life science evidence synthesis papers:
+We used the following search string for life science evidence synthesis papers from Scopus:
 
 `SUBJAREA(AGRI OR BIOC OR IMMU OR NEUR OR PHAR) TITLE-ABS-KEY ( ("review" OR "systematic map" OR "systematic surv" OR "literature surv" OR "recent advancements" OR insight* OR meta-analysis OR metareview* OR "meta epidemiolog" OR "meta-epidemiolog" OR "critical review" OR "scoping review" OR "rapid review*") )`
 
@@ -486,7 +488,7 @@ fig_comparison <- ggplot(cumulative_2000_2025, aes(x = Year, y = Count, color = 
 #| fig-width: 12
 #| fig-height: 8
 
-fig_annual + fig_comparison
+fig_annual + fig_comparison + plot_annotation(tag_levels = "A")
 
 ```
 
@@ -552,15 +554,12 @@ summary(lm_2000_2025)
 
 To compare long-term growth in database-level yearly retrieval counts from 2000 to 2025, we first calculated simple descriptive metrics for each series, including the absolute increase in counts, fold change, and compound annual growth rate (CAGR).
 
-We then fitted a linear model to log-transformed annual counts:
-
-`log10(Count) ~ Year * Series`
-
-In this model, `Year` represents the temporal slope for the reference series, and `Year:SeriesLife Sciences` represents how much the Life Sciences slope differs from the AI in Ecology slope. A negative interaction term therefore indicates that AI in Ecology increased faster than Life Sciences on a relative scale.
+We then fitted a linear model to log-transformed annual counts.
+In this model, `Year` represents the temporal slope for the reference series, and `Year:SeriesLife Sciences` represents how much the Life Sciences slope differs from the AI in Ecology slope. A negative interaction term indicates that AI in Ecology increased faster than Life Sciences on a relative scale.
 
 The descriptive summary showed that Life Sciences had a much larger absolute increase in yearly retrieval counts (of course!), whereas AI in Ecology showed a much larger fold change and CAGR. Consistent with this, the interaction term in the log-linear model was negative, indicating a steeper relative increase for AI in Ecology over time.
 
-The following folding scripts are Poisson/Quasi-Poisson glm models
+The following folding scripts are Poisson/Quasi-Poisson glm models:
 
 ```{r}
 #| code-fold: true
