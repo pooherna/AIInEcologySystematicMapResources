@@ -36,26 +36,29 @@ execute:
   warning: false
   message: false
   tidy: true
-  cache: true
+  # cache: true
 ---
 
 # Introduction
-This supplementary material accompanies our systematic mapping paper: *The first systematic map of systematic reviews on the usage of AI in ecology*.
-It contains all R codes to make result figures.
 
+This supplementary material accompanies our systematic mapping paper: *The first systematic map of systematic reviews on the usage of AI in ecology*. It contains all R codes to make result figures.
 
 # Read packages and dataset
+
 ```{r}
 #| code-fold: true
 
 # Data import & manipulation
 library(data.table)
 library(readxl)
+library(readr)
 library(tidyr)
 library(dplyr)
 library(purrr)
 library(stringr)
 library(forcats)
+library(dplyr)
+library(scales)
 
 # Visualisation (general)
 library(ggplot2)
@@ -130,6 +133,7 @@ message(
 ```
 
 ## Functions
+
 ```{r}
 #| code-fold: true
 
@@ -304,17 +308,332 @@ pal_appraisal <- c(
 ```
 
 # Figure 2: Yearly trend
-TBU
+
+we used the following search string for Life science evidence synthesis papers:
+
+```         
+SUBJAREA(AGRI OR BIOC OR IMMU OR NEUR OR PHAR) TITLE-ABS-KEY ( ("review" OR "systematic map" OR "systematic surv*" OR "literature surv*" OR "recent advancements" OR insight* OR meta-analysis OR metareview* OR "meta epidemiolog*" OR "meta-epidemiolog*" OR "critical review*" OR "scoping review*" OR "rapid review*") ) 
+```
+
+## panel A: trend for 72 papers
 ```{r}
+
+pub_year_col <- "Year of publication"
+                                                                                                 
+dat_years <- map_data[, .(n = .N), by = .(Year = get(pub_year_col))][order(Year)]                
+dat_years[, cumulative := cumsum(n)]
+                                                                                                 
+## panel A: annual count ----
+fig_annual <- ggplot(dat_years, aes(x = Year, y = n)) +
+      geom_col(fill = pal_main[["slate"]], width = 0.7) +
+      geom_text(aes(label = n), vjust = -0.4, size = 2.8, color = "#333333") +
+      scale_x_continuous(breaks = dat_years$Year) + 
+      scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+      labs(x = "Year",
+           y = "Number of studies") +
+      theme_am() + 
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```                                                                 
+
+## panel B: comparison
+```{r}
+
+# Read AI yearly counts -----
+# This first tries the simple two-column CSV.
+# If that does not return valid Year and Count columns, it falls back to
+# parsing a raw Scopus "Analyze Year" export.
+ai_path <- file.path(data_dir, "AI_SysRev_counts.csv")
+
+ai_counts <- suppressWarnings(
+  read_csv(ai_path, show_col_types = FALSE) |>
+    rename_with(~ str_remove(.x, "^\ufeff")) |>
+    select(1:2) |>
+    rename(Year = 1, Count = 2) |>
+    mutate(
+      Year = as.integer(Year),
+      Count = as.numeric(Count)
+    )
+)
+
+if (all(is.na(ai_counts$Year)) || all(is.na(ai_counts$Count))) {
+  ai_lines <- readLines(ai_path, warn = FALSE, encoding = "UTF-8")
+  ai_lines <- sub("^\ufeff", "", ai_lines)
+  ai_lines <- trimws(ai_lines)
+  ai_lines <- ai_lines[nzchar(ai_lines)]
+  ai_lines <- ai_lines[str_detect(ai_lines, '^"?\\d{4}"?\\s*,\\s*"?[0-9,]+"?$')]
+
+  ai_split <- str_split_fixed(str_remove_all(ai_lines, '"'), ",", n = 2)
+  ai_counts <- tibble(
+    Year = as.integer(trimws(ai_split[, 1])),
+    Count = as.numeric(gsub(",", "", trimws(ai_split[, 2])))
+  )
+}
+
+ai_counts <- ai_counts |>
+  filter(!is.na(Year), !is.na(Count)) |>
+  group_by(Year) |>
+  summarise(Count = sum(Count), .groups = "drop") |>
+  mutate(Series = "AI in Ecology")
+
+
+# Read Life Sciences yearly counts -----
+life_path <- file.path(data_dir, "LifeSci_SysRev_counts.csv")
+
+life_counts <- suppressWarnings(
+  read_csv(life_path, show_col_types = FALSE) |>
+    rename_with(~ str_remove(.x, "^\ufeff")) |>
+    select(1:2) |>
+    rename(Year = 1, Count = 2) |>
+    mutate(
+      Year = as.integer(Year),
+      Count = as.numeric(Count)
+    )
+)
+
+if (all(is.na(life_counts$Year)) || all(is.na(life_counts$Count))) {
+  life_lines <- readLines(life_path, warn = FALSE, encoding = "UTF-8")
+  life_lines <- sub("^\ufeff", "", life_lines)
+  life_lines <- trimws(life_lines)
+  life_lines <- life_lines[nzchar(life_lines)]
+  life_lines <- life_lines[str_detect(life_lines, '^"?\\d{4}"?\\s*,\\s*"?[0-9,]+"?$')]
+
+  life_split <- str_split_fixed(str_remove_all(life_lines, '"'), ",", n = 2)
+  life_counts <- tibble(
+    Year = as.integer(trimws(life_split[, 1])),
+    Count = as.numeric(gsub(",", "", trimws(life_split[, 2])))
+  )
+}
+
+life_counts <- life_counts |>
+  filter(!is.na(Year), !is.na(Count)) |>
+  group_by(Year) |>
+  summarise(Count = sum(Count), .groups = "drop") |>
+  mutate(Series = "Life Sciences")
+
+
+# Combine both series and remove incomplete future years ----
+counts_long <- bind_rows(ai_counts, life_counts) |>
+  filter(Year <= 2025)
+
+
+# Common theme ----
+plot_theme <- theme_classic(base_size = 11) +
+  theme(
+    text = element_text(color = "#222222"),
+    axis.text = element_text(color = "#333333"),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(color = "#555555"),
+    legend.title = element_blank(),
+    legend.position = "top"
+  )
+
+
+# 2017 to 2025 data ----
+counts_2017_2025 <- counts_long |>
+  filter(Year >= 2017, Year <= 2025) |>
+  group_by(Series) |>
+  complete(Year = 2017:2025, fill = list(Count = 0)) |>
+  arrange(Series, Year) |>
+  ungroup()
+
+cumulative_2017_2025 <- counts_2017_2025 |>
+  group_by(Series) |>
+  arrange(Year, .by_group = TRUE) |>
+  mutate(Count = cumsum(Count)) |>
+  ungroup()
+
+
+# 2000 to 2025 data ----
+counts_2000_2025 <- counts_long |>
+  filter(Year >= 2000, Year <= 2025) |>
+  group_by(Series) |>
+  complete(Year = 2000:2025, fill = list(Count = 0)) |>
+  arrange(Series, Year) |>
+  ungroup()
+
+cumulative_2000_2025 <- counts_2000_2025 |>
+  group_by(Series) |>
+  arrange(Year, .by_group = TRUE) |>
+  mutate(Count = cumsum(Count)) |>
+  ungroup()
+
+fig_comparison <- ggplot(cumulative_2000_2025, aes(x = Year, y = Count, color = Series)) +
+  geom_line(linewidth = 0.9) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = seq(2000, 2025, by = 5)) +
+  scale_y_log10(
+    breaks = scales::trans_breaks("log10", function(x) 10^x),
+    labels = scales::trans_format("log10", scales::math_format(10^.x))
+  )  +
+  annotation_logticks(sides = "l") +
+  scale_color_manual(values = c("AI in Ecology" = "#2C7FB8", "Life Sciences" = "#D95F0E")) +
+  labs(
+    title = "AI in Ecology vs Life Science",
+    subtitle = "2000-2025 | Log10 y-axis",
+    x = "Year",
+    y = "Cumulative counts",
+    caption = "Counts are based on yearly database retrieval totals from Scopus exports, not the final screened review set."
+  ) +
+  plot_theme
+```
+
+
+```{r}
+#| fig-align: center
+#| out-width: "100%"
+#| fig-width: 12
+#| fig-height: 8
+
+fig_annual + fig_comparison
+
+```
+
+### Growth rate
+
+```{r}
+#| eval: FALSE
+
+#  Simple descriptive summary ----
+summary_2000_2025 <- counts_2000_2025 |>
+  group_by(Series) |>
+  summarise(
+    start_count = Count[Year == 2000],
+    end_count = Count[Year == 2025],
+    absolute_increase = end_count - start_count,
+    fold_change = end_count / start_count,
+    CAGR = (end_count / start_count)^(1 / (2025 - 2000)) - 1,
+    .groups = "drop"
+  )
+
+summary_2000_2025
+#   Series        start_count end_count absolute_increase fold_change   CAGR
+#   <chr>               <dbl>     <dbl>             <dbl>       <dbl>  <dbl>
+# 1 AI in Ecology           5      1551              1546      310.   0.258 
+# 2 Life Sciences       28996    230701            201705        7.96 0.0865
+
+
+# LM on log-transformed counts -----
+# This is easy to interpret alongside the log-scale figure.
+
+lm_2000_2025 <- lm(log10(Count) ~ Year * Series, 
+                   data = counts_2000_2025)
+
+summary(lm_2000_2025)
+# Call:
+# lm(formula = log10(Count) ~ Year * Series, data = counts_2000_2025)
+# 
+# Residuals:
+#      Min       1Q   Median       3Q      Max 
+# -0.35816 -0.05980 -0.00107  0.04025  0.70604 
+# 
+# Coefficients:
+#                            Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)              -1.673e+02  1.013e+01 -16.522  < 2e-16 ***
+# Year                      8.385e-02  5.032e-03  16.664  < 2e-16 ***
+# SeriesLife Sciences       1.075e+02  1.432e+01   7.505 1.24e-09 ***
+# Year:SeriesLife Sciences -5.169e-02  7.116e-03  -7.265 2.89e-09 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 0.1924 on 48 degrees of freedom
+# Multiple R-squared:  0.9894,	Adjusted R-squared:  0.9887 
+# F-statistic:  1490 on 3 and 48 DF,  p-value: < 2.2e-16
+
+#  Interpretation ----
+# - Year = yearly change for the reference series
+# - Year:SeriesLife Sciences = difference in slope between Life Sciences
+#   and AI in Ecology
+#
+# If Year:SeriesLife Sciences is negative,
+# AI in Ecology is increasing faster on a relative scale.
+```
+To compare long-term growth in database-level yearly retrieval counts from 2000 to 2025, we first calculated simple descriptive metrics for each series, including the absolute increase in counts, fold change, and compound annual growth rate (CAGR).
+
+We then fitted a linear model to log-transformed annual counts:
+
+`log10(Count) ~ Year * Series`
+
+In this model, `Year` represents the temporal slope for the reference series, and `Year:SeriesLife Sciences` represents how much the Life Sciences slope differs from the AI in Ecology slope. A negative interaction term therefore indicates that AI in Ecology increased faster than Life Sciences on a relative scale.
+
+The descriptive summary showed that Life Sciences had a much larger absolute increase in yearly retrieval counts (of course!), whereas AI in Ecology showed a much larger fold change and CAGR. 
+Consistent with this, the interaction term in the log-linear model was negative, indicating a steeper relative increase for AI in Ecology over time.
+
+The following folding scripts are Poisson/Quasi-Poisson glm models
+```{r}
+#| code-fold: true
+#| eval: FALSE
+
+# Poisson GLM on counts ----
+# This treats the response as count data directly.
+glm_2000_2025 <- glm(Count ~ Year * Series, family = poisson(link = "log"), 
+                     data = counts_2000_2025)
+
+summary(glm_2000_2025)
+# Call:
+# glm(formula = Count ~ Year * Series, family = poisson(link = "log"), 
+#     data = counts_2000_2025)
+# 
+# Coefficients:
+#                            Estimate Std. Error z value Pr(>|z|)    
+# (Intercept)              -7.826e+02  1.369e+01  -57.16   <2e-16 ***
+# Year                      3.899e-01  6.768e-03   57.61   <2e-16 ***
+# SeriesLife Sciences       6.382e+02  1.369e+01   46.61   <2e-16 ***
+# Year:SeriesLife Sciences -3.126e-01  6.769e-03  -46.18   <2e-16 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# (Dispersion parameter for poisson family taken to be 1)
+# 
+#     Null deviance: 3853372  on 51  degrees of freedom
+# Residual deviance:   18748  on 48  degrees of freedom
+# AIC: 19230
+# 
+# Number of Fisher Scoring iterations: 5
+
+# Overdispersion check ----
+deviance(glm_2000_2025) / df.residual(glm_2000_2025)
+
+
+# Quasi-Poisson GLM ----
+# Use this if the Poisson model looks overdispersed.
+glm_2000_2025_quasi <- glm(
+  Count ~ Year * Series,
+  family = quasipoisson(link = "log"),
+  data = counts_2000_2025
+)
+
+summary(glm_2000_2025_quasi)
+# 
+# Call:
+# glm(formula = Count ~ Year * Series, family = quasipoisson(link = "log"), 
+#     data = counts_2000_2025)
+# 
+# Coefficients:
+#                           Estimate Std. Error t value Pr(>|t|)   
+# (Intercept)              -782.5979   280.3033  -2.792  0.00750 **
+# Year                        0.3899     0.1386   2.814  0.00707 **
+# SeriesLife Sciences       638.2064   280.3319   2.277  0.02731 * 
+# Year:SeriesLife Sciences   -0.3126     0.1386  -2.256  0.02868 * 
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# (Dispersion parameter for quasipoisson family taken to be 419.1293)
+# 
+#     Null deviance: 3853372  on 51  degrees of freedom
+# Residual deviance:   18748  on 48  degrees of freedom
+# AIC: NA
+# 
+# Number of Fisher Scoring iterations: 5
 ```
 
 # Figure 3: AI algorithms, eras, and tasks
+
 ```{r}
-#| layout: [[100],[48, -4, 48]]
 #| fig-align: center
 #| out-width: "90%"
 #| fig-width: 14
-#| fig-height: 10
+#| fig-height: 8
 
 ## panel A: algorithm frequency ----
 algo_bar <- as.data.table(dat_algorithms)[
@@ -329,6 +648,16 @@ bar_algorithm <- ggplot(
   coord_flip() +
   labs(x = NULL, y = "Number of studies") +
   theme_am()
+
+bar_algorithm
+```
+
+
+```{r}
+#| fig-align: center
+#| out-width: "90%"
+#| fig-width: 14
+#| fig-height: 8
 
 ## panel B: era combinations (UpSet) ----
 era_order <- c("Contemporary", "Modern", "Classic")
@@ -383,18 +712,16 @@ fig_task_upset <- UpSetR::upset(
 
 )
 
-bar_algorithm
 fig_era_upset
 fig_task_upset
 ```
 
-
 # Figure 4: Data modality and source
+
 ```{r}
-#| layout-ncol: 2
 #| fig-align: center
 #| out-width: "90%"
-#| fig-width: 12
+#| fig-width: 14
 #| fig-height: 8
 
 ## panel A: data modality combinations (UpSet) ----
@@ -455,8 +782,8 @@ fig_modality_upset
 fig_source_upset
 ```
 
-
 # Figure 5: Era × modality × source flow
+
 <!-- Still trying to change the order… -->
 
 ```{r}
@@ -466,7 +793,7 @@ fig_source_upset
 #| fig-height: 8
 
 era_order <- c("Contemporary", "Modern", "Classic")
-source_order_topdown <- c("Field", "Repository", "not specified", "Lab")
+source_order_topdown <- c("Field", "Repository", "Not specified", "Lab")
 
 alg <- as.data.table(dat_algorithms)[, .(FileID, Era)]              |> unique()
 mod <- as.data.table(dat_modality)[,   .(FileID, `Data Modality`)]  |> unique()
@@ -538,13 +865,13 @@ fig_sankey <- ggplot(
 fig_sankey
 ```
 
-
 # Figure 6: Reporting transparency
+
 ```{r}
 #| fig-align: center
 #| out-width: "90%"
 #| fig-width: 12
-#| fig-height: 8
+#| fig-height: 16
 
 
 n_reviews <- nrow(map_data)
@@ -689,10 +1016,10 @@ fig_appraisal_all / (fig_appraisal_pre2025 + fig_appraisal_2025) +
   plot_layout(guides = "collect") & theme(legend.position = "bottom")
 ```
 
-
 # Figure 7
 
 ## Authorship - world map
+
 ```{r}
 #| fig-align: center
 #| out-width: "90%"
@@ -767,6 +1094,7 @@ fig_map
 ```
 
 ## Collaboration - chord diagrams
+
 ```{r}
 #| results: hide
 
@@ -954,3 +1282,17 @@ knitr::include_graphics(chord_png_18)
 
 knitr::include_graphics(chord_png_all)
 ```
+
+
+# Software and package versions
+
+<details>
+<summary>Click to view version info</summary>
+
+```{r}
+
+sessionInfo()
+
+```
+
+</details>
