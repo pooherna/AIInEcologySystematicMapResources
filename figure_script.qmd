@@ -45,6 +45,8 @@ execute:
 
 This supplementary material accompanies our systematic mapping paper: *The first systematic map of systematic reviews on the usage of AI in ecology*. It contains all R codes to make result figures.
 
+<!-- I need to add more description to all section. -->
+
 # Read packages and dataset
 
 ```{r}
