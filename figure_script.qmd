@@ -90,26 +90,26 @@ rm(list = ls())
 gc()
 
 data_dir <- "data_AM"
-out_dir  <- "figures_AM"
-pdf_dir  <- file.path(out_dir, "pdf")
-png_dir  <- file.path(out_dir, "png")
+out_dir <- "figures_AM"
+pdf_dir <- file.path(out_dir, "pdf")
+png_dir <- file.path(out_dir, "png")
 dir.create(pdf_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(png_dir, showWarnings = FALSE, recursive = TRUE)
 message("Writing figures to: ", normalizePath(out_dir))
 
 col_id <- "FileID"
 
-map_data       <- fread(file.path(data_dir, "map_20260421.csv"))
+map_data <- fread(file.path(data_dir, "map_20260421.csv"))
 appraisal_data <- read_excel(file.path(data_dir, "appraisal_20260312.xlsx"))
 setDT(map_data)
 setDT(appraisal_data)
 
 dat_algorithms <- fread(file.path(data_dir, "algorithmsLong.csv"))
-dat_modality   <- fread(file.path(data_dir, "dataModalityLong.csv"))
-dat_source     <- fread(file.path(data_dir, "dataSourceLong.csv"))
-dat_task       <- fread(file.path(data_dir, "taskLong.csv"))
-dat_training   <- fread(file.path(data_dir, "trainingLong.csv"))
-scopus         <- fread(file.path(data_dir, "scopusData.csv"))
+dat_modality <- fread(file.path(data_dir, "dataModalityLong.csv"))
+dat_source <- fread(file.path(data_dir, "dataSourceLong.csv"))
+dat_task <- fread(file.path(data_dir, "taskLong.csv"))
+dat_training <- fread(file.path(data_dir, "trainingLong.csv"))
+scopus <- fread(file.path(data_dir, "scopusData.csv"))
 
 check_rows <- function(dat, expected, label) {
   if (nrow(dat) != expected) {
@@ -117,7 +117,7 @@ check_rows <- function(dat, expected, label) {
   }
 }
 
-check_rows(map_data,       72, "map_20260421.csv")
+check_rows(map_data, 72, "map_20260421.csv")
 check_rows(appraisal_data, 72, "appraisal_20260312.xlsx")
 
 message("Map rows: ", nrow(map_data))
@@ -142,17 +142,17 @@ message(
 theme_am <- function(base_size = 9) {
   theme_classic(base_size = base_size) +
     theme(
-      text               = element_text(color = "#222222"),
-      plot.title         = element_text(face = "bold", size = base_size + 1, margin = margin(b = 5)),
-      plot.subtitle      = element_text(size = base_size - 1, color = "#555555", margin = margin(b = 5)),
-      axis.title         = element_text(size = base_size),
-      axis.text          = element_text(size = base_size - 1, color = "#333333"),
+      text = element_text(color = "#222222"),
+      plot.title = element_text(face = "bold", size = base_size + 1, margin = margin(b = 5)),
+      plot.subtitle = element_text(size = base_size - 1, color = "#555555", margin = margin(b = 5)),
+      axis.title = element_text(size = base_size),
+      axis.text = element_text(size = base_size - 1, color = "#333333"),
       panel.grid.major.y = element_blank(),
-      panel.grid.minor   = element_blank(),
-      legend.title       = element_text(size = base_size - 1),
-      legend.text        = element_text(size = base_size - 1),
-      legend.key.height  = unit(0.45, "lines"),
-      plot.margin        = margin(5, 6, 5, 6)
+      panel.grid.minor = element_blank(),
+      legend.title = element_text(size = base_size - 1),
+      legend.text = element_text(size = base_size - 1),
+      legend.key.height = unit(0.45, "lines"),
+      plot.margin = margin(5, 6, 5, 6)
     )
 }
 
@@ -178,7 +178,7 @@ save_figure <- function(plot, name, width, height, dpi = 600) {
 }
 
 panel_tag_theme <- theme(
-  plot.tag          = element_text(face = "bold", size = 14),
+  plot.tag = element_text(face = "bold", size = 14),
   plot.tag.position = c(0, 1)
 )
 
@@ -204,8 +204,8 @@ prep_two_way_counts <- function(dat, var1, var2, split1 = TRUE, split2 = TRUE) {
     select(all_of(c(col_id, var1, var2))) |>
     rename(
       StudyID = all_of(col_id),
-      Var1    = all_of(var1),
-      Var2    = all_of(var2)
+      Var1 = all_of(var1),
+      Var2 = all_of(var2)
     ) |>
     filter(
       !is.na(Var1), Var1 != "",
@@ -269,8 +269,8 @@ plot_bar <- function(dat, category, title, fill = pal_main[["blue"]], n_total = 
     count(!!category, name = "n_studies") |>
     filter(!is.na(!!category), !!category != "") |>
     mutate(
-      pct            = n_studies / n_total,
-      label          = paste0(n_studies, " (", percent(pct, accuracy = 1), ")"),
+      pct = n_studies / n_total,
+      label = paste0(n_studies, " (", percent(pct, accuracy = 1), ")"),
       category_label = fct_reorder(as.factor(!!category), n_studies)
     ) |>
     ggplot(aes(x = category_label, y = n_studies)) +
@@ -285,27 +285,27 @@ plot_bar <- function(dat, category, title, fill = pal_main[["blue"]], n_total = 
 
 # > colours ----
 pal_main <- c(
-  blue  = "#3B6EA8",
-  teal  = "#4B9A8D",
+  blue = "#3B6EA8",
+  teal = "#4B9A8D",
   green = "#7FA35B",
-  gold  = "#D6A24A",
-  rose  = "#B76D68",
+  gold = "#D6A24A",
+  rose = "#B76D68",
   slate = "#6D7783",
-  plum  = "#8A6FA8"
+  plum = "#8A6FA8"
 )
 
 pal_era <- c(
-  "Classic"       = "#CD5555",
-  "Modern"        = "#6BAFBF",
-  "Contemporary"  = "#409C07",
-  "not specified" = "#A7A7A7"
+  "Classic" = "#CD5555",
+  "Modern" = "#6BAFBF",
+  "Contemporary" = "#409C07",
+  "Not specified" = "#A7A7A7"
 )
 
 pal_appraisal <- c(
-  "Yes"       = "#49a79a",
+  "Yes" = "#49a79a",
   "Partially" = "#E9C46A",
-  "No"        = "#de5a53",
-  "NA"        = "#9C9C9C"
+  "No" = "#de5a53",
+  "NA" = "#9C9C9C"
 )
 ```
 
@@ -322,10 +322,9 @@ The data was retrieved on April 23rd.
 ```{r}
 
 pub_year_col <- "Year of publication"
-                                                                                                 
-dat_years <- map_data[, .(n = .N), by = .(Year = get(pub_year_col))][order(Year)]                
+dat_years <- map_data[, .(n = .N), by = .(Year = get(pub_year_col))][order(Year)]   
 dat_years[, cumulative := cumsum(n)]
-                                                                                                 
+                                                                                        
 ## panel A: annual count ----
 fig_annual <- ggplot(dat_years, aes(x = Year, y = n)) +
       geom_col(fill = pal_main[["slate"]], width = 0.7) +
@@ -497,7 +496,7 @@ fig_annual + fig_comparison + plot_annotation(tag_levels = "A")
 ```{r}
 #| eval: FALSE
 
-#  Simple descriptive summary ----
+# Simple descriptive summary ----
 summary_2000_2025 <- counts_2000_2025 |>
   group_by(Series) |>
   summarise(
@@ -666,7 +665,7 @@ era_upset <- as.data.table(dat_algorithms)[
   , .(present = 1L), by = .(FileID, Era)] |>
   as.data.frame() |>
   tidyr::pivot_wider(
-    names_from  = Era,
+    names_from = Era,
     values_from = present,
     values_fill = 0
   ) |>
@@ -674,13 +673,13 @@ era_upset <- as.data.table(dat_algorithms)[
 
 fig_era_upset <- UpSetR::upset(
   as.data.frame(era_upset),
-  sets           = era_order,
+  sets = era_order,
   main.bar.color = "#CD5555",
   sets.bar.color = "#838B8B",
-  matrix.color   = "#698B22",
-  order.by       = "freq",
-  keep.order     = TRUE,
-  text.scale     = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
+  matrix.color = "#698B22",
+  order.by = "freq",
+  keep.order = TRUE,
+  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
   )
 
 ## panel C: task combinations (UpSet) ----
@@ -688,7 +687,7 @@ task_upset <- as.data.table(dat_task)[
   , .(present = 1L), by = .(FileID, Task)] |>
   as.data.frame() |>
   tidyr::pivot_wider(
-    names_from  = Task,
+    names_from = Task,
     values_from = present,
     values_fill = 0
   ) |>
@@ -702,15 +701,14 @@ task_order_top <- task_upset |>
 
 fig_task_upset <- UpSetR::upset(
   as.data.frame(task_upset),
-  sets           = rev(task_order_top),
-  keep.order     = TRUE,
+  sets = rev(task_order_top),
+  keep.order = TRUE,
   main.bar.color = "#53868B",
   sets.bar.color = "#838B8B",
-  matrix.color   = "#CD950C",
-  order.by       = "freq",
-  text.scale     = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
-
-)
+  matrix.color = "#CD950C",
+  order.by = "freq",
+  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
+  )
 
 fig_era_upset
 fig_task_upset
@@ -729,7 +727,7 @@ modality_upset <- as.data.table(dat_modality)[
   , .(present = 1L), by = .(FileID, `Data Modality`)] |>
   as.data.frame() |>
   tidyr::pivot_wider(
-    names_from  = `Data Modality`,
+    names_from = `Data Modality`,
     values_from = present,
     values_fill = 0
   ) |>
@@ -743,13 +741,13 @@ modality_top <- modality_upset |>
 
 fig_modality_upset <- UpSetR::upset(
   as.data.frame(modality_upset),
-  sets           = rev(modality_top),
-  keep.order     = TRUE,
+  sets = rev(modality_top),
+  keep.order = TRUE,
   main.bar.color = "#698B69",
   sets.bar.color = "#838B8B",
-  matrix.color   = "#8B1A1A",
-  order.by       = "freq",
-  text.scale     = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
+  matrix.color = "#8B1A1A",
+  order.by = "freq",
+  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
   )
 
 ## panel B: data source combinations (UpSet) ----
@@ -761,7 +759,7 @@ source_upset <- as.data.table(dat_source)[
   , .(present = 1L), by = .(FileID, `Source of Data`)] |>
   as.data.frame() |>
   tidyr::pivot_wider(
-    names_from  = `Source of Data`,
+    names_from= `Source of Data`,
     values_from = present,
     values_fill = 0
   ) |>
@@ -769,13 +767,13 @@ source_upset <- as.data.table(dat_source)[
 
 fig_source_upset <- UpSetR::upset(
   as.data.frame(source_upset),
-  sets           = rev(source_order),
+  sets = rev(source_order),
   main.bar.color = "#8B864E",
   sets.bar.color = "#838B8B",
-  matrix.color   = "#CD8162",
-  order.by       = "freq",
-  keep.order     = TRUE,
-  text.scale     = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
+  matrix.color = "#CD8162",
+  order.by = "freq",
+  keep.order = TRUE,
+  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
   )
 
 fig_modality_upset
@@ -795,9 +793,9 @@ fig_source_upset
 era_order <- c("Contemporary", "Modern", "Classic")
 source_order_topdown <- c("Field", "Repository", "Not specified", "Lab")
 
-alg <- as.data.table(dat_algorithms)[, .(FileID, Era)]              |> unique()
-mod <- as.data.table(dat_modality)[,   .(FileID, `Data Modality`)]  |> unique()
-src <- as.data.table(dat_source)[,     .(FileID, `Source of Data`)] |> unique()
+alg <- as.data.table(dat_algorithms)[, .(FileID, Era)] |> unique()
+mod <- as.data.table(dat_modality)[, .(FileID, `Data Modality`)] |> unique()
+src <- as.data.table(dat_source)[, .(FileID, `Source of Data`)] |> unique()
 
 dat_alluvial <- alg[
   mod, on = "FileID", allow.cartesian = TRUE
@@ -808,7 +806,7 @@ dat_alluvial <- alg[
   as.data.frame() |>
   dplyr::rename(
     Modality = `Data Modality`,
-    Source   = `Source of Data`
+    Source = `Source of Data`
   ) |>
   dplyr::count(Era, Modality, Source, name = "Freq")
 
@@ -818,9 +816,9 @@ modality_order_top <- dat_alluvial |>
 
 dat_alluvial <- dat_alluvial |>
   dplyr::mutate(
-    Era      = factor(Era,      levels = era_order),
+    Era      = factor(Era, levels = era_order),
     Modality = factor(Modality, levels = modality_order_top),
-    Source   = factor(Source,   levels = source_order_topdown)
+    Source   = factor(Source, levels = source_order_topdown)
   )
 
 fig_sankey <- ggplot(
@@ -829,24 +827,24 @@ fig_sankey <- ggplot(
 ) +
   ggalluvial::geom_alluvium(
     aes(fill = Era),
-    width      = 0.2,
-    alpha      = 0.8,
+    width = 0.2,
+    alpha = 0.8,
     decreasing = FALSE,
-    reverse    = FALSE
+    reverse = FALSE
   ) +
   ggalluvial::geom_stratum(
-    width      = 0.2,
-    fill       = "grey90",
-    color      = "grey70",
+    width = 0.2,
+    fill = "grey90",
+    color = "grey70",
     decreasing = FALSE,
     reverse    = FALSE
   ) +
   ggplot2::geom_text(
-    stat       = "stratum",
-    aes(label  = after_stat(stratum)),
-    size       = 3,
+    stat = "stratum",
+    aes(label = after_stat(stratum)),
+    size = 3,
     decreasing = FALSE,
-    reverse    = FALSE
+    reverse = FALSE
   ) +
   scale_x_discrete(
     limits = c("Era", "Modality", "Source"),
@@ -856,9 +854,9 @@ fig_sankey <- ggplot(
   labs(y = "Count", x = NULL) +
   theme_am(base_size = 9) +
   theme(
-    panel.grid      = element_blank(),
-    axis.text.y     = element_blank(),
-    axis.ticks      = element_blank(),
+    panel.grid = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank(),
     legend.position = "bottom"
   )
 
@@ -1041,22 +1039,22 @@ extract_country <- function(affiliation) {
 }
 
 country_mapping <- c(
-  "USA"                     = "United States",
-  "USA."                    = "United States",
-  "United States of America"= "United States",
-  "United Kingdom."         = "United Kingdom",
-  "Russian Federation"      = "Russia",
-  "Czech Republic"          = "Czechia"
+  "USA" = "United States",
+  "USA." = "United States",
+  "United States of America" = "United States",
+  "United Kingdom." = "United Kingdom",
+  "Russian Federation" = "Russia",
+  "Czech Republic" = "Czechia"
 )
 
 bibs <- scopus |>
   as.data.frame() |>
   mutate(
-    first_author             = vapply(authors, \(x) extract_first_last(x)[1], character(1)),
+    first_author = vapply(authors, \(x) extract_first_last(x)[1], character(1)),
     first_author_affiliation = vapply(authors_with_affiliations, \(x) extract_affiliation(x)[1], character(1)),
     first_author_country_raw = vapply(first_author_affiliation, extract_country, character(1)),
-    first_author_country     = recode(first_author_country_raw, !!!country_mapping),
-    first_author_iso3        = countrycode(first_author_country, origin = "country.name", destination = "iso3c")
+    first_author_country = recode(first_author_country_raw, !!!country_mapping),
+    first_author_iso3 = countrycode(first_author_country, origin = "country.name", destination = "iso3c")
   )
 
 country_counts <- bibs |>
@@ -1070,24 +1068,24 @@ world <- ne_countries(scale = "medium", returnclass = "sf") |>
 fig_map <- ggplot(world) +
   geom_sf(aes(fill = n_first_authors), color = "#7b837d", linewidth = 0.08) +
   scale_fill_gradient(
-    low      = "#d8eade",
-    high     = "#2a8352",
+    low = "#d8eade",
+    high = "#2a8352",
     na.value = "#ecf5ee",
-    breaks   = pretty_breaks(n = 5),
-    labels   = label_number(accuracy = 1)
+    breaks = pretty_breaks(n = 5),
+    labels = label_number(accuracy = 1)
   ) +
   labs(fill = "First-author\naffiliations") +
   guides(fill = guide_colorbar(
     title.position = "top",
-    barwidth       = unit(3.5, "cm"),
-    barheight      = unit(0.28, "cm")
+    barwidth = unit(3.5, "cm"),
+    barheight = unit(0.28, "cm")
   )) +
   theme_void(base_size = 9) +
   theme(
     legend.position = "bottom",
-    legend.title    = element_text(size = 14),
-    legend.text     = element_text(size = 14),
-    plot.margin     = margin(3, 3, 3, 3)
+    legend.title = element_text(size = 14),
+    legend.text = element_text(size = 14),
+    plot.margin = margin(3, 3, 3, 3)
   )
 
 fig_map
@@ -1105,7 +1103,7 @@ net_matrix <- biblioNetwork(
   bib_data,
   analysis = "collaboration",
   network  = "countries",
-  sep      = ";"
+  sep  = ";"
 ) |>
   as.matrix()
 
@@ -1152,26 +1150,26 @@ circos.par(
 )
 chordDiagram(
   net_matrix_18,
-  annotationTrack       = "grid",
+  annotationTrack = "grid",
   annotationTrackHeight = c(0.04, 0.02),
-  preAllocateTracks     = 1,
-  grid.col              = chord_cols_18,
-  transparency          = 0.35
+  preAllocateTracks  = 1,
+  grid.col = chord_cols_18,
+  transparency = 0.35
 )
 circos.trackPlotRegion(
   track.index = 1,
   panel.fun = function(x, y) {
-    xlim        <- get.cell.meta.data("xlim")
-    ylim        <- get.cell.meta.data("ylim")
+    xlim <- get.cell.meta.data("xlim")
+    ylim <- get.cell.meta.data("ylim")
     sector.name <- get.cell.meta.data("sector.index")
     circos.text(
       mean(xlim), ylim[1] + 0.25,
       sector.name,
-      facing     = "clockwise",
+      facing = "clockwise",
       niceFacing = TRUE,
-      adj        = c(0, 0.5),
-      cex        = 0.7,
-      col        = "#333333"
+      adj = c(0, 0.5),
+      cex = 0.7,
+      col = "#333333"
     )
   },
   bg.border = NA
@@ -1180,7 +1178,7 @@ circos.clear()
 dev.off()
 
 ### all countries ----
-keep_all       <- names(country_strength[country_strength > 0])
+keep_all <- names(country_strength[country_strength > 0])
 net_matrix_all <- net_matrix[keep_all, keep_all, drop = FALSE]
 net_matrix_all <- net_matrix_all[
   rowSums(net_matrix_all) + colSums(net_matrix_all) > 0,
@@ -1188,7 +1186,7 @@ net_matrix_all <- net_matrix_all[
   drop = FALSE
 ]
 
-ord_all        <- names(sort(rowSums(net_matrix_all) + colSums(net_matrix_all), decreasing = TRUE))
+ord_all <- names(sort(rowSums(net_matrix_all) + colSums(net_matrix_all), decreasing = TRUE))
 net_matrix_all <- net_matrix_all[ord_all, ord_all, drop = FALSE]
 
 base_cols <- c(
@@ -1202,19 +1200,19 @@ base_cols <- c(
   "#013220", "#038756"
 )
 
-country_names_all    <- rownames(net_matrix_all)
+country_names_all <- rownames(net_matrix_all)
 country_names_lookup <- country_names_all
 country_names_lookup[country_names_lookup == "UK"] <- "United Kingdom"
 
 country_codes_all <- countrycode(
-  sourcevar   = country_names_lookup,
-  origin      = "country.name",
+  sourcevar = country_names_lookup,
+  origin = "country.name",
   destination = "iso3c",
-  warn        = TRUE
+  warn = TRUE
 )
 country_codes_all[country_names_all == "USA"] <- "USA"
-country_codes_all[country_names_all == "UK"]  <- "GBR"
-country_codes_all[is.na(country_codes_all)]   <- country_names_all[is.na(country_codes_all)]
+country_codes_all[country_names_all == "UK"] <- "GBR"
+country_codes_all[is.na(country_codes_all)] <- country_names_all[is.na(country_codes_all)]
 
 rownames(net_matrix_all) <- country_codes_all
 colnames(net_matrix_all) <- country_codes_all
@@ -1237,26 +1235,26 @@ circos.par(
 )
 chordDiagram(
   net_matrix_all,
-  annotationTrack       = "grid",
+  annotationTrack = "grid",
   annotationTrackHeight = c(0.035, 0.015),
-  preAllocateTracks     = 1,
-  grid.col              = cols_all,
-  transparency          = 0.45
+  preAllocateTracks = 1,
+  grid.col = cols_all,
+  transparency = 0.45
 )
 circos.trackPlotRegion(
   track.index = 1,
   panel.fun = function(x, y) {
-    xlim        <- get.cell.meta.data("xlim")
-    ylim        <- get.cell.meta.data("ylim")
+    xlim <- get.cell.meta.data("xlim")
+    ylim <- get.cell.meta.data("ylim")
     sector.name <- get.cell.meta.data("sector.index")
     circos.text(
       mean(xlim), ylim[1] + mm_y(3.0),
       sector.name,
-      facing     = "clockwise",
+      facing = "clockwise",
       niceFacing = TRUE,
-      adj        = c(0, 0.5),
-      cex        = 0.45,
-      col        = "#333333"
+      adj = c(0, 0.5),
+      cex = 0.45,
+      col = "#333333"
     )
   },
   bg.border = NA
