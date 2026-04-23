@@ -4,3 +4,5 @@
 .claude/settings.json
 .Rproj.user
 
+.DS_Store
+RCode/.DS_Store
