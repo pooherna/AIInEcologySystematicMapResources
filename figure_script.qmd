@@ -43,11 +43,19 @@ execute:
 
 # Introduction
 
-This supplementary material accompanies our systematic mapping paper: *The first systematic map of systematic reviews on the usage of AI in ecology*. It contains all R codes to make result figures.
+This supplementary material accompanies our systematic mapping paper: *The first systematic map of systematic reviews on the usage of AI in ecology*. It provides the R code used to generate the main result figures.
+
+The analyses use the final coded dataset of 72 systematic reviews, together with long-format files describing AI algorithms, data modalities, data sources, tasks, training information, and Scopus bibliographic records. 
+<!-- Input files are expected to be stored in `data_AM/`. Generated figures are saved to `figures_AM/`, with separate `pdf/` and `png/` subfolders. -->
 
 <!-- I need to add more description to all section. -->
 
 # Read packages and dataset
+
+This section loads the R packages, defines input and output directories, reads the coded systematic map data.
+<!-- and performs simple row-count checks. The expected number of reviews is 72 in both the map dataset and the reporting-transparency appraisal dataset. -->
+
+<!-- The long-format files are used for variables that can have multiple values per review, such as AI algorithm type, data modality, data source, task, and training information. -->
 
 ```{r}
 #| code-fold: true
@@ -61,8 +69,6 @@ library(dplyr)
 library(purrr)
 library(stringr)
 library(forcats)
-library(dplyr)
-library(scales)
 
 # Visualisation (general)
 library(ggplot2)
@@ -88,8 +94,8 @@ library(png)
 library(grid)
 library(gridGraphics)
 
-rm(list = ls())
-gc()
+# rm(list = ls())
+# gc()
 
 data_dir <- "data_AM"
 out_dir <- "figures_AM"
@@ -312,12 +318,12 @@ pal_appraisal <- c(
 ```
 
 # Figure 2: Yearly trend
+This figure shows the annual number of systematic reviews on AI in ecology and compares this trend with broader review literature. Panel A shows the number of mapped AI-in-ecology systematic reviews published by year. Panel B compares this trend with two broader Scopus searches: systematic reviews on AI across research fields and systematic reviews in ecology.
+
+The Scopus comparison data were retrieved on April 23, 2026. The comparison is descriptive and is intended to show broad publication trends rather than provide a formal growth-rate analysis.
 
 We used the following search string for life science evidence synthesis papers from Scopus:
 
-`SUBJAREA(AGRI OR BIOC OR IMMU OR NEUR OR PHAR) TITLE-ABS-KEY ( ("review" OR "systematic map" OR "systematic surv" OR "literature surv" OR "recent advancements" OR insight* OR meta-analysis OR metareview* OR "meta epidemiolog" OR "meta-epidemiolog" OR "critical review" OR "scoping review" OR "rapid review*") )`
-
-The data was retrieved on April 23rd.
 
 ## panel A: trend for 72 papers
 
@@ -560,7 +566,7 @@ In this model, `Year` represents the temporal slope for the reference series, an
 
 The descriptive summary showed that Life Sciences had a much larger absolute increase in yearly retrieval counts (of course!), whereas AI in Ecology showed a much larger fold change and CAGR. Consistent with this, the interaction term in the log-linear model was negative, indicating a steeper relative increase for AI in Ecology over time.
 
-The following folding scripts are Poisson/Quasi-Poisson glm models:
+The following folded code chunk shows optional Poisson and quasi-Poisson GLM checks:
 
 ```{r}
 #| code-fold: true
@@ -630,6 +636,11 @@ summary(glm_2000_2025_quasi)
 ```
 
 # Figure 3: AI algorithms, eras, and tasks
+
+The figures summarise which AI algorithms and task types were reported in the mapped reviews. Panel A counts the number of reviews mentioning each algorithm. 
+Panels B and C use UpSet plots to show combinations of AI eras and task categories because individual reviews could include more than one category.
+
+Counts are review-level counts rather than counts of primary studies. Records coded as "not specified" were excluded from these plots to focus on explicitly reported AI algorithms and tasks. 
 
 ```{r}
 #| fig-align: center
@@ -718,6 +729,10 @@ fig_task_upset
 
 # Figure 4: Data modality and source
 
+This figure summarises the types of data used in the mapped reviews. Panel A shows combinations of data modalities, while Panel B shows combinations of data sources. UpSet plots are used because a single review could include multiple modalities or sources.
+
+The category "not specified" is retained where the review did not clearly report the relevant information.
+
 ```{r}
 #| fig-align: center
 #| out-width: "90%"
@@ -783,6 +798,10 @@ fig_source_upset
 ```
 
 # Figure 5: Era × modality × source flow
+
+This alluvial plot shows how AI eras, data modalities, and data sources co-occurred across the mapped reviews. Each flow represents a unique combination of era, modality, and source, and the width of the flow is proportional to the number of review-level records with that combination.
+
+Because reviews could include multiple algorithms, modalities, or sources, the counts in this plot should be interpreted as combination counts rather than mutually exclusive review counts.
 
 <!-- Still trying to change the order… -->
 
@@ -866,6 +885,10 @@ fig_sankey
 ```
 
 # Figure 6: Reporting transparency
+
+This figure summarises reporting transparency across the mapped reviews. Each item corresponds to one reporting or transparency criterion coded during data extraction. Responses were harmonised into four categories: Yes, Partially, No, and NA.
+
+The figure is shown for all reviews combined, and separately for reviews published before 2025 and reviews published in 2025, to provide a descriptive comparison over time.
 
 ```{r}
 #| fig-align: center
@@ -1016,7 +1039,12 @@ fig_appraisal_all / (fig_appraisal_pre2025 + fig_appraisal_2025) +
   plot_layout(guides = "collect") & theme(legend.position = "bottom")
 ```
 
-# Figure 7
+
+# Figure 7: Authorship and collaboration patterns
+
+This figure summarises authorship geography and international collaboration patterns using Scopus bibliographic data. The world map shows the country of the first author's affiliation. The chord diagrams show international co-authorship links among countries.
+
+The first chord diagram is restricted to the top 18 countries by collaboration strength for readability. The second chord diagram includes all countries with at least one collaboration link.
 
 ## Authorship - world map
 
