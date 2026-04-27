@@ -4,6 +4,8 @@ date: today
 authors:
   - name: Ayumi Mizuno
     orcid: 0000-0003-0822-5637
+  - name: Sergio Poo Hernandez
+    # orcid:
   - name: Santiago Ortega
   #   orcid:
   - name: Eduardo S.A. Santos
