@@ -78,8 +78,8 @@ library(cowplot)
 
 # Visualisation (specialised)
 library(ggalluvial)   # alluvial / Sankey diagrams
-library(UpSetR)       # UpSet plots
-library(circlize)     # chord diagrams
+library(ComplexUpset) # UpSet plots
+library(circlize) # chord diagrams
 
 # Spatial
 library(sf)
@@ -640,13 +640,9 @@ summary(glm_2000_2025_quasi)
 The figures summarise which AI algorithms and task types were reported in the mapped reviews. Panel A counts the number of reviews mentioning each algorithm. 
 Panels B and C use UpSet plots to show combinations of AI eras and task categories because individual reviews could include more than one category.
 
-Counts are review-level counts rather than counts of primary studies. Records coded as "not specified" were excluded from these plots to focus on explicitly reported AI algorithms and tasks. 
+Counts are review-level counts rather than counts of primary studies. Records coded as "not specified" were excluded from these plots to focus on explicitly reported AI algorithms,eras, and tasks. 
 
 ```{r}
-#| fig-align: center
-#| out-width: "90%"
-#| fig-width: 14
-#| fig-height: 8
 
 ## panel A: algorithm frequency ----
 algo_bar <- as.data.table(dat_algorithms)[
@@ -656,46 +652,84 @@ algo_bar <- as.data.table(dat_algorithms)[
 bar_algorithm <- ggplot(
   algo_bar,
   aes(x = reorder(Algorithm, n_studies), y = n_studies)
-) +
+  ) +
   geom_col(fill = pal_main[["slate"]]) +
+  geom_text(aes(label = n_studies),
+            hjust = -0.2,
+            size = 3
+            ) +
   coord_flip() +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.1))
+  ) +
   labs(x = NULL, y = "Number of studies") +
   theme_am()
 
-bar_algorithm
-```
-
-```{r}
-#| fig-align: center
-#| out-width: "90%"
-#| fig-width: 14
-#| fig-height: 8
 
 ## panel B: era combinations (UpSet) ----
 era_order <- c("Contemporary", "Modern", "Classic")
 
 era_upset <- as.data.table(dat_algorithms)[
-  , .(present = 1L), by = .(FileID, Era)] |>
+  !is.na(Era) & Era %in% era_order,
+  .(present = 1L),
+  by = .(FileID, Era)
+] |>
   as.data.frame() |>
   tidyr::pivot_wider(
     names_from = Era,
     values_from = present,
     values_fill = 0
-  ) |>
-  dplyr::select(FileID, dplyr::all_of(era_order))
-
-fig_era_upset <- UpSetR::upset(
-  as.data.frame(era_upset),
-  sets = era_order,
-  main.bar.color = "#CD5555",
-  sets.bar.color = "#838B8B",
-  matrix.color = "#698B22",
-  order.by = "freq",
-  keep.order = TRUE,
-  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
   )
 
+for (x in era_order) {
+  if (!x %in% names(era_upset)) era_upset[[x]] <- 0
+}
+
+era_upset <- era_upset |>
+  dplyr::select(FileID, dplyr::all_of(era_order)) |>
+  dplyr::filter(rowSums(dplyr::across(dplyr::all_of(era_order))) > 0)
+
+era_set_sizes <- colSums(era_upset[era_order])
+
+era_label_map <- paste0(names(era_set_sizes), " (", era_set_sizes, ")")
+names(era_label_map) <- names(era_set_sizes)
+
+era_upset_labelled <- era_upset
+names(era_upset_labelled)[match(era_order, names(era_upset_labelled))] <- era_label_map
+
+fig_era_upset <- ComplexUpset::upset(era_upset_labelled,
+  intersect = unname(era_label_map[rev(era_order)]),
+   base_annotations = list(
+    "Intersection size" = intersection_size(
+      counts = TRUE,
+      text = list(size = 5),
+      mapping = aes(fill = "intersection")
+    ) +
+      scale_fill_manual(values = c(intersection = "#CD5556"), guide = "none")
+  ),
+  set_sizes = FALSE,
+  sort_intersections_by = "cardinality",
+  sort_sets = FALSE,
+  min_size = 1,
+  matrix = intersection_matrix(
+    geom = geom_point(shape = 21,
+                      size = 4.2,
+                      stroke = 0.8,
+                      fill = "#698B21"),
+    segment = geom_segment(linewidth = 0.8, colour = "#698B21"),
+    outline_color = list(active = "#333333",inactive = "#ededed"))
+  ) +
+  labs(x = NULL, y = "Intersection size") +
+  theme(
+    text = element_text(size = 16),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()
+  )
+
+
 ## panel C: task combinations (UpSet) ----
+
 task_upset <- as.data.table(dat_task)[
   , .(present = 1L), by = .(FileID, Task)] |>
   as.data.frame() |>
@@ -712,19 +746,80 @@ task_order_top <- task_upset |>
   sort(decreasing = TRUE) |>
   names()
 
-fig_task_upset <- UpSetR::upset(
-  as.data.frame(task_upset),
-  sets = rev(task_order_top),
-  keep.order = TRUE,
-  main.bar.color = "#53868B",
-  sets.bar.color = "#838B8B",
-  matrix.color = "#CD950C",
-  order.by = "freq",
-  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
-  )
+task_set_sizes <- colSums(task_upset[task_order_top])
 
-fig_era_upset
-fig_task_upset
+task_label_map <- paste0(names(task_set_sizes), " (", task_set_sizes, ")")
+names(task_label_map) <- names(task_set_sizes)
+
+task_upset_labelled <- task_upset
+names(task_upset_labelled)[match(task_order_top, names(task_upset_labelled))] <- task_label_map
+
+task_sets_labelled <- unname(task_label_map[rev(task_order_top)])
+
+fig_task_upset <- ComplexUpset::upset(
+  task_upset_labelled,
+  intersect = task_sets_labelled,
+  base_annotations = list(
+    "Intersection size" = intersection_size(
+      counts = TRUE,
+      text = list(size = 5),
+      mapping = aes(fill = "intersection")
+    ) +
+      scale_fill_manual(values = c(intersection = "#53868B"), guide = "none")
+  ),
+  set_sizes = FALSE,
+  sort_intersections_by = "cardinality",
+  sort_sets = FALSE,
+  min_size = 1,
+  matrix = intersection_matrix(
+    geom = geom_point(shape = 21,
+                      size = 4.2,
+                      stroke = 0.8,
+                      fill = "#CD950C"),
+    segment = geom_segment(linewidth = 0.9, colour = "#CD950C"),
+    outline_color = list(active = "#333333",inactive = "#ededed"
+  ))) +
+  labs(x = NULL, y = "Intersection size") +
+  theme(
+    text = element_text(size = 16),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()
+  ) 
+```
+
+```{r}
+#| fig-align: center
+#| out-width: "100%"
+#| fig-width: 14
+#| fig-height: 12
+
+bar_algorithm_labeled <- cowplot::ggdraw(bar_algorithm) +
+  cowplot::draw_label("A", x = 0.01, y = 0.99, hjust = 0, vjust = 1, size = 18)
+
+fig_era_upset_labeled <- cowplot::ggdraw(fig_era_upset) +
+  cowplot::draw_label("B", x = 0.01, y = 0.99, hjust = 0, vjust = 1, size = 18)
+
+fig_task_upset_labeled <- cowplot::ggdraw(fig_task_upset) +
+  cowplot::draw_label("C", x = 0.01, y = 0.99, hjust = 0, vjust = 1, size = 18)
+
+fig3_right <- cowplot::plot_grid(
+  fig_era_upset_labeled,
+  fig_task_upset_labeled,
+  ncol = 1,
+  align = "v",
+  rel_heights = c(1, 1)
+)
+
+fig3 <- cowplot::plot_grid(
+  bar_algorithm_labeled,
+  fig3_right,
+  ncol = 2,
+  align = "h",
+  rel_widths = c(1.3, 1)
+)
+
+fig3
 ```
 
 # Figure 4: Data modality and source
@@ -734,14 +829,13 @@ This figure summarises the types of data used in the mapped reviews. Panel A sho
 The category "not specified" is retained where the review did not clearly report the relevant information.
 
 ```{r}
-#| fig-align: center
-#| out-width: "90%"
-#| fig-width: 14
-#| fig-height: 8
 
-## panel A: data modality combinations (UpSet) ----
+## panel A: data modality combinations ----
 modality_upset <- as.data.table(dat_modality)[
-  , .(present = 1L), by = .(FileID, `Data Modality`)] |>
+  !is.na(`Data Modality`),
+  .(present = 1L),
+  by = .(FileID, `Data Modality`)
+] |>
   as.data.frame() |>
   tidyr::pivot_wider(
     names_from = `Data Modality`,
@@ -750,51 +844,168 @@ modality_upset <- as.data.table(dat_modality)[
   ) |>
   dplyr::select(-any_of("not specified"))
 
-modality_top <- modality_upset |>
+modality_order_top <- modality_upset |>
   dplyr::select(-FileID) |>
   colSums() |>
   sort(decreasing = TRUE) |>
   names()
 
-fig_modality_upset <- UpSetR::upset(
-  as.data.frame(modality_upset),
-  sets = rev(modality_top),
-  keep.order = TRUE,
-  main.bar.color = "#698B69",
-  sets.bar.color = "#838B8B",
-  matrix.color = "#8B1A1A",
-  order.by = "freq",
-  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
+modality_upset <- modality_upset |>
+  dplyr::filter(
+    rowSums(dplyr::across(dplyr::all_of(modality_order_top))) > 0
   )
 
-## panel B: data source combinations (UpSet) ----
+modality_set_sizes <- colSums(modality_upset[modality_order_top])
+
+modality_label_map <- paste0(
+  names(modality_set_sizes),
+  " (",
+  modality_set_sizes,
+  ")"
+)
+names(modality_label_map) <- names(modality_set_sizes)
+
+modality_upset_labelled <- modality_upset
+names(modality_upset_labelled)[
+  match(modality_order_top, names(modality_upset_labelled))
+] <- modality_label_map
+
+modality_sets_labelled <- unname(modality_label_map[rev(modality_order_top)])
+
+fig_modality_upset <- ComplexUpset::upset(
+  modality_upset_labelled,
+  intersect = modality_sets_labelled,
+  base_annotations = list(
+    "Intersection size" = ComplexUpset::intersection_size(
+      counts = TRUE,
+      text = list(size = 5),
+      mapping = aes(fill = "intersection")
+    ) +
+      scale_fill_manual(
+        values = c(intersection = "#698B69"),
+        guide = "none"
+      )
+  ),
+  set_sizes = FALSE,
+  sort_intersections_by = "cardinality",
+  sort_sets = FALSE,
+  min_size = 1,
+  matrix = intersection_matrix(
+  geom = geom_point(shape = 21,
+    size = 4.2,
+    stroke = 0.8,
+    fill = "#8B1A1A"),
+  segment = geom_segment(linewidth = 0.9, colour = "#8B1A1A"),
+  outline_color = list(active = "#333333", inactive = "#ededed"
+  ))
+  ) +
+  labs(x = NULL, y = "Intersection size") +
+  theme(
+    text = element_text(size = 16),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()
+  )
+
+
+## panel B: data source combinations ----
+
 dat_source[`Source of Data` == "not specified", `Source of Data` := "Not specified"]
 
 source_order <- c("Field", "Repository", "Not specified", "Lab")
 
 source_upset <- as.data.table(dat_source)[
-  , .(present = 1L), by = .(FileID, `Source of Data`)] |>
+  !is.na(`Source of Data`) & `Source of Data` %in% source_order,
+  .(present = 1L),
+  by = .(FileID, `Source of Data`)
+] |>
   as.data.frame() |>
   tidyr::pivot_wider(
-    names_from= `Source of Data`,
+    names_from = `Source of Data`,
     values_from = present,
     values_fill = 0
-  ) |>
-  dplyr::select(FileID, dplyr::all_of(source_order))
-
-fig_source_upset <- UpSetR::upset(
-  as.data.frame(source_upset),
-  sets = rev(source_order),
-  main.bar.color = "#8B864E",
-  sets.bar.color = "#838B8B",
-  matrix.color = "#CD8162",
-  order.by = "freq",
-  keep.order = TRUE,
-  text.scale = c(1.8, 1.8, 1.8, 1.8, 1.8, 1.8)
   )
 
-fig_modality_upset
-fig_source_upset
+for (x in source_order) {
+  if (!x %in% names(source_upset)) source_upset[[x]] <- 0
+}
+
+source_upset <- source_upset |>
+  dplyr::select(FileID, dplyr::all_of(source_order)) |>
+  dplyr::filter(
+    rowSums(dplyr::across(dplyr::all_of(source_order))) > 0
+  )
+
+source_set_sizes <- colSums(source_upset[source_order])
+
+source_label_map <- paste0(
+  names(source_set_sizes),
+  " (",
+  source_set_sizes,
+  ")"
+)
+names(source_label_map) <- names(source_set_sizes)
+
+source_upset_labelled <- source_upset
+names(source_upset_labelled)[
+  match(source_order, names(source_upset_labelled))
+] <- source_label_map
+
+source_sets_labelled <- unname(source_label_map[rev(source_order)])
+
+fig_source_upset <- ComplexUpset::upset(
+  source_upset_labelled,
+  intersect = source_sets_labelled,
+  base_annotations = list(
+    "Intersection size" = ComplexUpset::intersection_size(
+      counts = TRUE,
+      text = list(size = 5),
+      mapping = aes(fill = "intersection")
+    ) +
+      scale_fill_manual(
+        values = c(intersection = "#8B864E"),
+        guide = "none"
+      )),
+  set_sizes = FALSE,
+  sort_intersections_by = "cardinality",
+  sort_sets = FALSE,
+  min_size = 1,
+  matrix = intersection_matrix(
+  geom = geom_point(
+    shape = 21,
+    size = 4.2,
+    stroke = 0.8,
+    fill = "#CD8162"
+  ),
+  segment = ggplot2::geom_segment(linewidth = 0.9, colour = "#CD8162"),
+  outline_color = list(active = "#333333", inactive = "#ededed"
+  ))) +
+  labs(x = NULL, y = "Intersection size") +
+  theme(
+    text = element_text(size = 16),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.x = element_blank()
+  )
+```
+
+```{r}
+#| fig-align: center
+#| out-width: "90%"
+#| fig-width: 14
+#| fig-height: 12
+
+fig4 <- plot_grid(
+  fig_modality_upset,
+  fig_source_upset,
+  ncol = 1,
+  align = "v",
+  labels = c("A", "B"),
+  label_size = 18
+)
+
+fig4
+
 ```
 
 # Figure 5: Era × modality × source flow
@@ -860,7 +1071,7 @@ fig_sankey <- ggplot(
     decreasing = FALSE,
     reverse    = FALSE
   ) +
-  ggplot2::geom_text(
+  geom_text(
     stat = "stratum",
     aes(label = after_stat(stratum)),
     size = 3,
