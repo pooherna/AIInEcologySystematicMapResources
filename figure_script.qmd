@@ -1294,8 +1294,20 @@ fig_appraisal_all <- make_appraisal_plot(appraisal_summary, group_levels[1])
 fig_appraisal_pre2025 <- make_appraisal_plot(appraisal_summary, group_levels[2])
 fig_appraisal_2025 <- make_appraisal_plot(appraisal_summary, group_levels[3])
 
-fig_appraisal_all / (fig_appraisal_pre2025 + fig_appraisal_2025) +
-  plot_layout(guides = "collect") & theme(legend.position = "bottom")
+fig_appraisal <- fig_appraisal_all / (fig_appraisal_pre2025 + fig_appraisal_2025) +
+  plot_layout(guides = "collect") +
+  plot_annotation(tag_levels = "a") &
+  panel_tag_theme &
+  theme(legend.position = "bottom")
+
+fig_appraisal
+
+save_figure(
+  fig_appraisal,
+  "figure6_reporting_transparency",
+  width = 10,
+  height = 10
+)
 ```
 
 
