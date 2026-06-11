@@ -57,6 +57,7 @@ drop_cols = [
     "Year"
 ]
 
+df_all = df.drop(columns=[c for c in drop_cols if c in df_pre2025.columns])
 df_pre2025 = df_pre2025.drop(columns=[c for c in drop_cols if c in df_pre2025.columns])
 df_2025 = df_2025.drop(columns=[c for c in drop_cols if c in df_2025.columns])
 
@@ -84,14 +85,20 @@ def summarize(data):
 
 traffic_pre2025 = summarize(df_pre2025)
 traffic_2025 = summarize(df_2025)
+traffic_all = summarize(df_all)
+
+traffic_all.to_csv("criticalAll.csv",index=True)
+traffic_pre2025.to_csv("criticalPre25.csv",index=True)
+traffic_2025.to_csv("critical25.csv",index=True)
 
 print(traffic_pre2025)
 print(traffic_2025)
+print(traffic_all)
 
 # ---------------------------
 # Plot
 # ---------------------------
-fig, axes = plt.subplots(1,2, figsize=(14,9), sharey=True)
+fig, axes = plt.subplots(1,3, figsize=(14,9), sharey=True)
 
 colors = {
     "Yes":"green",
@@ -110,8 +117,9 @@ def plot_traffic(ax, data, title):
     ax.set_title(title)
     ax.set_xlabel("Number of reviews")
 
-plot_traffic(axes[0], traffic_pre2025, "Reviews before 2025")
-plot_traffic(axes[1], traffic_2025, "Reviews published in 2025")
+plot_traffic(axes[0], traffic_all, "All reviews")
+plot_traffic(axes[1], traffic_pre2025, "Reviews before 2025")
+plot_traffic(axes[2], traffic_2025, "Reviews published in 2025")
 
 axes[1].legend(title="Assessment")
 
