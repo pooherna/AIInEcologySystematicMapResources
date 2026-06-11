@@ -2,17 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-05-21">
+<meta name="dcterms.date" content="2026-06-10">
 
 <title>Figure codes</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,14 +62,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="figure_script_files/libs/clipboard/clipboard.min.js"></script>
 <script src="figure_script_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="figure_script_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="figure_script_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="figure_script_files/libs/quarto-html/popper.min.js"></script>
 <script src="figure_script_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="figure_script_files/libs/quarto-html/anchor.min.js"></script>
 <link href="figure_script_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="figure_script_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="figure_script_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="figure_script_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="figure_script_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="figure_script_files/libs/bootstrap/bootstrap-e530d4988d54e95069a4d489b1e578b3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="figure_script_files/libs/bootstrap/bootstrap-992b9c0eaa640e0678120c6486e9fbad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -140,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 21, 2026</p>
+      <p class="date">June 10, 2026</p>
     </div>
   </div>
   
@@ -253,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theme_am <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">9</span>) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>theme_am <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">11</span>) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> base_size) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#222222"</span>),</span>
@@ -585,8 +583,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AI in Ecology vs Life Science"</span>,</span>
 <span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"2000-2025 | Log10 y-axis"</span>,</span>
 <span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cumulative counts"</span>,</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Counts are based on yearly database retrieval totals from Scopus exports, not the final screened review set."</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cumulative counts"</span><span class="co">#,</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>    <span class="co">#caption = "Counts are based on yearly database retrieval totals from Scopus exports, not the final screened review set."</span></span>
 <span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>  plot_theme</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1367,8 +1365,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>fig_appraisal_pre2025 <span class="ot">&lt;-</span> <span class="fu">make_appraisal_plot</span>(appraisal_summary, group_levels[<span class="dv">2</span>])</span>
 <span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>fig_appraisal_2025 <span class="ot">&lt;-</span> <span class="fu">make_appraisal_plot</span>(appraisal_summary, group_levels[<span class="dv">3</span>])</span>
 <span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>fig_appraisal_all <span class="sc">/</span> (fig_appraisal_pre2025 <span class="sc">+</span> fig_appraisal_2025) <span class="sc">+</span></span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) <span class="sc">&amp;</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>fig_appraisal <span class="ot">&lt;-</span> fig_appraisal_all <span class="sc">/</span> (fig_appraisal_pre2025 <span class="sc">+</span> fig_appraisal_2025) <span class="sc">+</span></span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>) <span class="sc">+</span></span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">"a"</span>) <span class="sc">&amp;</span></span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>  panel_tag_theme <span class="sc">&amp;</span></span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>fig_appraisal</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1376,6 +1379,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_figure</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  fig_appraisal,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figure6_reporting_transparency"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">10</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">10</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="figure-7-authorship-and-collaboration-patterns" class="level1">
@@ -1385,250 +1394,250 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="authorship---world-map" class="level2">
 <h2 class="anchored" data-anchor-id="authorship---world-map">Authorship - world map</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>extract_first_last <span class="ot">&lt;-</span> <span class="cf">function</span>(author_list) {</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  authors <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(author_list, <span class="st">";"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">trimws</span>(authors[<span class="dv">1</span>]), <span class="fu">trimws</span>(authors[<span class="fu">length</span>(authors)]))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>extract_affiliation <span class="ot">&lt;-</span> <span class="cf">function</span>(affiliation_list) {</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  affiliations <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(affiliation_list, <span class="st">";"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">trimws</span>(affiliations[<span class="dv">1</span>]), <span class="fu">trimws</span>(affiliations[<span class="fu">length</span>(affiliations)]))</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>extract_country <span class="ot">&lt;-</span> <span class="cf">function</span>(affiliation) {</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>(<span class="fu">strsplit</span>(affiliation, <span class="st">","</span>)[[<span class="dv">1</span>]], <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">trimws</span>()</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>country_mapping <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USA"</span> <span class="ot">=</span> <span class="st">"United States"</span>,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USA."</span> <span class="ot">=</span> <span class="st">"United States"</span>,</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"United States of America"</span> <span class="ot">=</span> <span class="st">"United States"</span>,</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"United Kingdom."</span> <span class="ot">=</span> <span class="st">"United Kingdom"</span>,</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Russian Federation"</span> <span class="ot">=</span> <span class="st">"Russia"</span>,</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Czech Republic"</span> <span class="ot">=</span> <span class="st">"Czechia"</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>bibs <span class="ot">&lt;-</span> scopus <span class="sc">|&gt;</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author =</span> <span class="fu">vapply</span>(authors, \(x) <span class="fu">extract_first_last</span>(x)[<span class="dv">1</span>], <span class="fu">character</span>(<span class="dv">1</span>)),</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_affiliation =</span> <span class="fu">vapply</span>(authors_with_affiliations, \(x) <span class="fu">extract_affiliation</span>(x)[<span class="dv">1</span>], <span class="fu">character</span>(<span class="dv">1</span>)),</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_country_raw =</span> <span class="fu">vapply</span>(first_author_affiliation, extract_country, <span class="fu">character</span>(<span class="dv">1</span>)),</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_country =</span> <span class="fu">recode</span>(first_author_country_raw, <span class="sc">!!!</span>country_mapping),</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_iso3 =</span> <span class="fu">countrycode</span>(first_author_country, <span class="at">origin =</span> <span class="st">"country.name"</span>, <span class="at">destination =</span> <span class="st">"iso3c"</span>)</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>country_counts <span class="ot">&lt;-</span> bibs <span class="sc">|&gt;</span></span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(first_author_iso3)) <span class="sc">|&gt;</span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_author_iso3, first_author_country, <span class="at">name =</span> <span class="st">"n_first_authors"</span>)</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(iso_a3, name, geometry) <span class="sc">|&gt;</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(country_counts, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"iso_a3"</span> <span class="ot">=</span> <span class="st">"first_author_iso3"</span>))</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>fig_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(world) <span class="sc">+</span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> n_first_authors), <span class="at">color =</span> <span class="st">"#7b837d"</span>, <span class="at">linewidth =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(</span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"#d8eade"</span>,</span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"#2a8352"</span>,</span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"#ecf5ee"</span>,</span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">5</span>),</span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"First-author</span><span class="sc">\n</span><span class="st">affiliations"</span>) <span class="sc">+</span></span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(</span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">barwidth =</span> <span class="fu">unit</span>(<span class="fl">3.5</span>, <span class="st">"cm"</span>),</span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">barheight =</span> <span class="fu">unit</span>(<span class="fl">0.28</span>, <span class="st">"cm"</span>)</span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">9</span>) <span class="sc">+</span></span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="co"># fig_map</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>extract_first_last <span class="ot">&lt;-</span> <span class="cf">function</span>(author_list) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  authors <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(author_list, <span class="st">";"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">trimws</span>(authors[<span class="dv">1</span>]), <span class="fu">trimws</span>(authors[<span class="fu">length</span>(authors)]))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>extract_affiliation <span class="ot">&lt;-</span> <span class="cf">function</span>(affiliation_list) {</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  affiliations <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(affiliation_list, <span class="st">";"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">trimws</span>(affiliations[<span class="dv">1</span>]), <span class="fu">trimws</span>(affiliations[<span class="fu">length</span>(affiliations)]))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>extract_country <span class="ot">&lt;-</span> <span class="cf">function</span>(affiliation) {</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>(<span class="fu">strsplit</span>(affiliation, <span class="st">","</span>)[[<span class="dv">1</span>]], <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">trimws</span>()</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>country_mapping <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USA"</span> <span class="ot">=</span> <span class="st">"United States"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USA."</span> <span class="ot">=</span> <span class="st">"United States"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"United States of America"</span> <span class="ot">=</span> <span class="st">"United States"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"United Kingdom."</span> <span class="ot">=</span> <span class="st">"United Kingdom"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Russian Federation"</span> <span class="ot">=</span> <span class="st">"Russia"</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Czech Republic"</span> <span class="ot">=</span> <span class="st">"Czechia"</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>bibs <span class="ot">&lt;-</span> scopus <span class="sc">|&gt;</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author =</span> <span class="fu">vapply</span>(authors, \(x) <span class="fu">extract_first_last</span>(x)[<span class="dv">1</span>], <span class="fu">character</span>(<span class="dv">1</span>)),</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_affiliation =</span> <span class="fu">vapply</span>(authors_with_affiliations, \(x) <span class="fu">extract_affiliation</span>(x)[<span class="dv">1</span>], <span class="fu">character</span>(<span class="dv">1</span>)),</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_country_raw =</span> <span class="fu">vapply</span>(first_author_affiliation, extract_country, <span class="fu">character</span>(<span class="dv">1</span>)),</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_country =</span> <span class="fu">recode</span>(first_author_country_raw, <span class="sc">!!!</span>country_mapping),</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">first_author_iso3 =</span> <span class="fu">countrycode</span>(first_author_country, <span class="at">origin =</span> <span class="st">"country.name"</span>, <span class="at">destination =</span> <span class="st">"iso3c"</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>country_counts <span class="ot">&lt;-</span> bibs <span class="sc">|&gt;</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(first_author_iso3)) <span class="sc">|&gt;</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_author_iso3, first_author_country, <span class="at">name =</span> <span class="st">"n_first_authors"</span>)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(iso_a3, name, geometry) <span class="sc">|&gt;</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(country_counts, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"iso_a3"</span> <span class="ot">=</span> <span class="st">"first_author_iso3"</span>))</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>fig_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(world) <span class="sc">+</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> n_first_authors), <span class="at">color =</span> <span class="st">"#7b837d"</span>, <span class="at">linewidth =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"#d8eade"</span>,</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"#2a8352"</span>,</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"#ecf5ee"</span>,</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">pretty_breaks</span>(<span class="at">n =</span> <span class="dv">5</span>),</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"First-author</span><span class="sc">\n</span><span class="st">affiliations"</span>) <span class="sc">+</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">barwidth =</span> <span class="fu">unit</span>(<span class="fl">3.5</span>, <span class="st">"cm"</span>),</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">barheight =</span> <span class="fu">unit</span>(<span class="fl">0.28</span>, <span class="st">"cm"</span>)</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">9</span>) <span class="sc">+</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a><span class="co"># fig_map</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="collaboration---chord-diagrams" class="level2">
 <h2 class="anchored" data-anchor-id="collaboration---chord-diagrams">Collaboration - chord diagrams</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bib_data <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="fu">file.path</span>(data_dir, <span class="st">"scopusData.bib"</span>), <span class="at">dbsource =</span> <span class="st">"scopus"</span>, <span class="at">format =</span> <span class="st">"bibtex"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>bib_data <span class="ot">&lt;-</span> <span class="fu">metaTagExtraction</span>(bib_data, <span class="at">Field =</span> <span class="st">"AU_CO"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>net_matrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  bib_data,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">analysis =</span> <span class="st">"collaboration"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">network  =</span> <span class="st">"countries"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep  =</span> <span class="st">";"</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>net_matrix[<span class="fu">lower.tri</span>(net_matrix)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix) <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(<span class="fu">rownames</span>(net_matrix))</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix) <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(<span class="fu">colnames</span>(net_matrix))</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix)[<span class="fu">rownames</span>(net_matrix) <span class="sc">==</span> <span class="st">"Usa"</span>] <span class="ot">&lt;-</span> <span class="st">"USA"</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix)[<span class="fu">colnames</span>(net_matrix) <span class="sc">==</span> <span class="st">"Usa"</span>] <span class="ot">&lt;-</span> <span class="st">"USA"</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix)[<span class="fu">rownames</span>(net_matrix) <span class="sc">==</span> <span class="st">"United Kingdom"</span>] <span class="ot">&lt;-</span> <span class="st">"UK"</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix)[<span class="fu">colnames</span>(net_matrix) <span class="sc">==</span> <span class="st">"United Kingdom"</span>] <span class="ot">&lt;-</span> <span class="st">"UK"</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>country_strength <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(net_matrix) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix)</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="do">### top 18 countries ----</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>keep_countries_18 <span class="ot">&lt;-</span> <span class="fu">names</span>(</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>(country_strength[country_strength <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>)[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">18</span>, <span class="fu">sum</span>(country_strength <span class="sc">&gt;</span> <span class="dv">0</span>))]</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>net_matrix_18 <span class="ot">&lt;-</span> net_matrix[keep_countries_18, keep_countries_18, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>net_matrix_18 <span class="ot">&lt;-</span> net_matrix_18[</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(net_matrix_18) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix_18) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(net_matrix_18) <span class="sc">+</span> <span class="fu">rowSums</span>(net_matrix_18) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  drop <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>chord_cols_18 <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"#3B6EA8"</span>, <span class="st">"#4B9A8D"</span>, <span class="st">"#D6A24A"</span>, <span class="st">"#B76D68"</span>, <span class="st">"#6D7783"</span>, <span class="st">"#8A6FA8"</span>,</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#7FA35B"</span>, <span class="st">"#5E8C9A"</span>, <span class="st">"#C58A5A"</span>, <span class="st">"#8C7853"</span>, <span class="st">"#5B8E7D"</span>, <span class="st">"#A05C7B"</span>,</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#7895B2"</span>, <span class="st">"#B8A052"</span>, <span class="st">"#6F7D55"</span>, <span class="st">"#9B7E7E"</span>, <span class="st">"#4F7B8A"</span>, <span class="st">"#8E9A6B"</span></span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>  )[<span class="fu">seq_along</span>(<span class="fu">rownames</span>(net_matrix_18))],</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(net_matrix_18)</span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>draw_chord_top18 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.clear</span>()</span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.par</span>(</span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">track.margin =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>),</span>
-<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">gap.degree   =</span> <span class="dv">2</span>,</span>
-<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">canvas.xlim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.25</span>),</span>
-<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">canvas.ylim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.25</span>)</span>
-<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chordDiagram</span>(</span>
-<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>    net_matrix_18,</span>
-<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">annotationTrack =</span> <span class="st">"grid"</span>,</span>
-<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">annotationTrackHeight =</span> <span class="fu">c</span>(<span class="fl">0.04</span>, <span class="fl">0.02</span>),</span>
-<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">preAllocateTracks  =</span> <span class="dv">1</span>,</span>
-<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid.col =</span> chord_cols_18,</span>
-<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">transparency =</span> <span class="fl">0.35</span></span>
-<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.trackPlotRegion</span>(</span>
-<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">track.index =</span> <span class="dv">1</span>,</span>
-<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.fun =</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>      xlim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"xlim"</span>)</span>
-<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>      ylim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"ylim"</span>)</span>
-<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>      sector.name <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"sector.index"</span>)</span>
-<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">circos.text</span>(</span>
-<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mean</span>(xlim), ylim[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">0.25</span>,</span>
-<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>        sector.name,</span>
-<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>        <span class="at">facing =</span> <span class="st">"clockwise"</span>,</span>
-<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>        <span class="at">niceFacing =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>        <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>),</span>
-<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex =</span> <span class="fl">0.7</span>,</span>
-<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"#333333"</span></span>
-<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg.border =</span> <span class="cn">NA</span></span>
-<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.clear</span>()</span>
-<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>chord_pdf_18 <span class="ot">&lt;-</span> <span class="fu">file.path</span>(pdf_dir, <span class="st">"figure7_chord_top18.pdf"</span>)</span>
-<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>chord_png_18 <span class="ot">&lt;-</span> <span class="fu">file.path</span>(png_dir, <span class="st">"figure7_chord_top18.png"</span>)</span>
-<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(chord_pdf_18, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">useDingbats =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_chord_top18</span>()</span>
-<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(chord_png_18, <span class="at">width =</span> <span class="dv">5400</span>, <span class="at">height =</span> <span class="dv">5400</span>, <span class="at">res =</span> <span class="dv">450</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span>
-<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_chord_top18</span>()</span>
-<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a><span class="do">### all countries ----</span></span>
-<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>keep_all <span class="ot">&lt;-</span> <span class="fu">names</span>(country_strength[country_strength <span class="sc">&gt;</span> <span class="dv">0</span>])</span>
-<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a>net_matrix_all <span class="ot">&lt;-</span> net_matrix[keep_all, keep_all, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>net_matrix_all <span class="ot">&lt;-</span> net_matrix_all[</span>
-<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(net_matrix_all) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix_all) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(net_matrix_all) <span class="sc">+</span> <span class="fu">rowSums</span>(net_matrix_all) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a>  drop <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a>ord_all <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">rowSums</span>(net_matrix_all) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix_all), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb19-101"><a href="#cb19-101" aria-hidden="true" tabindex="-1"></a>net_matrix_all <span class="ot">&lt;-</span> net_matrix_all[ord_all, ord_all, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb19-102"><a href="#cb19-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-103"><a href="#cb19-103" aria-hidden="true" tabindex="-1"></a>base_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb19-104"><a href="#cb19-104" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#3B6EA8"</span>, <span class="st">"#4B9A8D"</span>, <span class="st">"#D6A24A"</span>, <span class="st">"#B76D68"</span>, <span class="st">"#6D7783"</span>, <span class="st">"#8A6FA8"</span>,</span>
-<span id="cb19-105"><a href="#cb19-105" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#7FA35B"</span>, <span class="st">"#5E8C9A"</span>, <span class="st">"#C58A5A"</span>, <span class="st">"#8C7853"</span>, <span class="st">"#5B8E7D"</span>, <span class="st">"#A05C7B"</span>,</span>
-<span id="cb19-106"><a href="#cb19-106" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#7895B2"</span>, <span class="st">"#B0C052"</span>, <span class="st">"#6F7D55"</span>, <span class="st">"#9B7E7E"</span>, <span class="st">"#4F7B8A"</span>, <span class="st">"#8E9A6B"</span>,</span>
-<span id="cb19-107"><a href="#cb19-107" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#9e907e"</span>, <span class="st">"#dea5a4"</span>, <span class="st">"#898441"</span>, <span class="st">"#af9392"</span>, <span class="st">"#8d9490"</span>, <span class="st">"#708090"</span>,</span>
-<span id="cb19-108"><a href="#cb19-108" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#cd7f32"</span>, <span class="st">"#32cd4b"</span>, <span class="st">"#7f32cd"</span>, <span class="st">"#ca4a46"</span>, <span class="st">"#63000f"</span>, <span class="st">"#de3163"</span>,</span>
-<span id="cb19-109"><a href="#cb19-109" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#434d57"</span>, <span class="st">"#707390"</span>, <span class="st">"#908070"</span>, <span class="st">"#e3735e"</span>, <span class="st">"#e35e7e"</span>, <span class="st">"#364758"</span>,</span>
-<span id="cb19-110"><a href="#cb19-110" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#b22222"</span>, <span class="st">"#8eb222"</span>, <span class="st">"#22b2b2"</span>, <span class="st">"#ffd700"</span>, <span class="st">"#682860"</span>, <span class="st">"#685028"</span>,</span>
-<span id="cb19-111"><a href="#cb19-111" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#013220"</span>, <span class="st">"#038756"</span></span>
-<span id="cb19-112"><a href="#cb19-112" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-113"><a href="#cb19-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-114"><a href="#cb19-114" aria-hidden="true" tabindex="-1"></a>country_names_all <span class="ot">&lt;-</span> <span class="fu">rownames</span>(net_matrix_all)</span>
-<span id="cb19-115"><a href="#cb19-115" aria-hidden="true" tabindex="-1"></a>country_names_lookup <span class="ot">&lt;-</span> country_names_all</span>
-<span id="cb19-116"><a href="#cb19-116" aria-hidden="true" tabindex="-1"></a>country_names_lookup[country_names_lookup <span class="sc">==</span> <span class="st">"UK"</span>] <span class="ot">&lt;-</span> <span class="st">"United Kingdom"</span></span>
-<span id="cb19-117"><a href="#cb19-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-118"><a href="#cb19-118" aria-hidden="true" tabindex="-1"></a>country_codes_all <span class="ot">&lt;-</span> <span class="fu">countrycode</span>(</span>
-<span id="cb19-119"><a href="#cb19-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">sourcevar =</span> country_names_lookup,</span>
-<span id="cb19-120"><a href="#cb19-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> <span class="st">"country.name"</span>,</span>
-<span id="cb19-121"><a href="#cb19-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> <span class="st">"iso3c"</span>,</span>
-<span id="cb19-122"><a href="#cb19-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">warn =</span> <span class="cn">TRUE</span></span>
-<span id="cb19-123"><a href="#cb19-123" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-124"><a href="#cb19-124" aria-hidden="true" tabindex="-1"></a>country_codes_all[country_names_all <span class="sc">==</span> <span class="st">"USA"</span>] <span class="ot">&lt;-</span> <span class="st">"USA"</span></span>
-<span id="cb19-125"><a href="#cb19-125" aria-hidden="true" tabindex="-1"></a>country_codes_all[country_names_all <span class="sc">==</span> <span class="st">"UK"</span>] <span class="ot">&lt;-</span> <span class="st">"GBR"</span></span>
-<span id="cb19-126"><a href="#cb19-126" aria-hidden="true" tabindex="-1"></a>country_codes_all[<span class="fu">is.na</span>(country_codes_all)] <span class="ot">&lt;-</span> country_names_all[<span class="fu">is.na</span>(country_codes_all)]</span>
-<span id="cb19-127"><a href="#cb19-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-128"><a href="#cb19-128" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix_all) <span class="ot">&lt;-</span> country_codes_all</span>
-<span id="cb19-129"><a href="#cb19-129" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix_all) <span class="ot">&lt;-</span> country_codes_all</span>
-<span id="cb19-130"><a href="#cb19-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-131"><a href="#cb19-131" aria-hidden="true" tabindex="-1"></a>cols_all <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
-<span id="cb19-132"><a href="#cb19-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colorRampPalette</span>(base_cols[<span class="fu">seq_len</span>(<span class="fu">nrow</span>(net_matrix_all))])(<span class="fu">nrow</span>(net_matrix_all)),</span>
-<span id="cb19-133"><a href="#cb19-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(net_matrix_all)</span>
-<span id="cb19-134"><a href="#cb19-134" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-135"><a href="#cb19-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-136"><a href="#cb19-136" aria-hidden="true" tabindex="-1"></a>chord_png_all <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="st">"chord_all_countries.png"</span>)</span>
-<span id="cb19-137"><a href="#cb19-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-138"><a href="#cb19-138" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(chord_png_all, <span class="at">width =</span> <span class="dv">5000</span>, <span class="at">height =</span> <span class="dv">5000</span>, <span class="at">res =</span> <span class="dv">500</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span>
-<span id="cb19-139"><a href="#cb19-139" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
-<span id="cb19-140"><a href="#cb19-140" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.clear</span>()</span>
-<span id="cb19-141"><a href="#cb19-141" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.par</span>(</span>
-<span id="cb19-142"><a href="#cb19-142" aria-hidden="true" tabindex="-1"></a>  <span class="at">track.margin =</span> <span class="fu">c</span>(<span class="fl">0.005</span>, <span class="fl">0.005</span>),</span>
-<span id="cb19-143"><a href="#cb19-143" aria-hidden="true" tabindex="-1"></a>  <span class="at">gap.degree   =</span> <span class="dv">1</span>,</span>
-<span id="cb19-144"><a href="#cb19-144" aria-hidden="true" tabindex="-1"></a>  <span class="at">canvas.xlim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.30</span>, <span class="fl">1.30</span>),</span>
-<span id="cb19-145"><a href="#cb19-145" aria-hidden="true" tabindex="-1"></a>  <span class="at">canvas.ylim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.30</span>, <span class="fl">1.30</span>)</span>
-<span id="cb19-146"><a href="#cb19-146" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-147"><a href="#cb19-147" aria-hidden="true" tabindex="-1"></a><span class="fu">chordDiagram</span>(</span>
-<span id="cb19-148"><a href="#cb19-148" aria-hidden="true" tabindex="-1"></a>  net_matrix_all,</span>
-<span id="cb19-149"><a href="#cb19-149" aria-hidden="true" tabindex="-1"></a>  <span class="at">annotationTrack =</span> <span class="st">"grid"</span>,</span>
-<span id="cb19-150"><a href="#cb19-150" aria-hidden="true" tabindex="-1"></a>  <span class="at">annotationTrackHeight =</span> <span class="fu">c</span>(<span class="fl">0.035</span>, <span class="fl">0.015</span>),</span>
-<span id="cb19-151"><a href="#cb19-151" aria-hidden="true" tabindex="-1"></a>  <span class="at">preAllocateTracks =</span> <span class="dv">1</span>,</span>
-<span id="cb19-152"><a href="#cb19-152" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid.col =</span> cols_all,</span>
-<span id="cb19-153"><a href="#cb19-153" aria-hidden="true" tabindex="-1"></a>  <span class="at">transparency =</span> <span class="fl">0.45</span></span>
-<span id="cb19-154"><a href="#cb19-154" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-155"><a href="#cb19-155" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.trackPlotRegion</span>(</span>
-<span id="cb19-156"><a href="#cb19-156" aria-hidden="true" tabindex="-1"></a>  <span class="at">track.index =</span> <span class="dv">1</span>,</span>
-<span id="cb19-157"><a href="#cb19-157" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.fun =</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb19-158"><a href="#cb19-158" aria-hidden="true" tabindex="-1"></a>    xlim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"xlim"</span>)</span>
-<span id="cb19-159"><a href="#cb19-159" aria-hidden="true" tabindex="-1"></a>    ylim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"ylim"</span>)</span>
-<span id="cb19-160"><a href="#cb19-160" aria-hidden="true" tabindex="-1"></a>    sector.name <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"sector.index"</span>)</span>
-<span id="cb19-161"><a href="#cb19-161" aria-hidden="true" tabindex="-1"></a>    <span class="fu">circos.text</span>(</span>
-<span id="cb19-162"><a href="#cb19-162" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(xlim), ylim[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mm_y</span>(<span class="fl">3.0</span>),</span>
-<span id="cb19-163"><a href="#cb19-163" aria-hidden="true" tabindex="-1"></a>      sector.name,</span>
-<span id="cb19-164"><a href="#cb19-164" aria-hidden="true" tabindex="-1"></a>      <span class="at">facing =</span> <span class="st">"clockwise"</span>,</span>
-<span id="cb19-165"><a href="#cb19-165" aria-hidden="true" tabindex="-1"></a>      <span class="at">niceFacing =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb19-166"><a href="#cb19-166" aria-hidden="true" tabindex="-1"></a>      <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>),</span>
-<span id="cb19-167"><a href="#cb19-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex =</span> <span class="fl">0.45</span>,</span>
-<span id="cb19-168"><a href="#cb19-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"#333333"</span></span>
-<span id="cb19-169"><a href="#cb19-169" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb19-170"><a href="#cb19-170" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb19-171"><a href="#cb19-171" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg.border =</span> <span class="cn">NA</span></span>
-<span id="cb19-172"><a href="#cb19-172" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-173"><a href="#cb19-173" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.clear</span>()</span>
-<span id="cb19-174"><a href="#cb19-174" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bib_data <span class="ot">&lt;-</span> <span class="fu">convert2df</span>(<span class="fu">file.path</span>(data_dir, <span class="st">"scopusData.bib"</span>), <span class="at">dbsource =</span> <span class="st">"scopus"</span>, <span class="at">format =</span> <span class="st">"bibtex"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>bib_data <span class="ot">&lt;-</span> <span class="fu">metaTagExtraction</span>(bib_data, <span class="at">Field =</span> <span class="st">"AU_CO"</span>, <span class="at">sep =</span> <span class="st">";"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>net_matrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  bib_data,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">analysis =</span> <span class="st">"collaboration"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">network  =</span> <span class="st">"countries"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep  =</span> <span class="st">";"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>net_matrix[<span class="fu">lower.tri</span>(net_matrix)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix) <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(<span class="fu">rownames</span>(net_matrix))</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix) <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(<span class="fu">colnames</span>(net_matrix))</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix)[<span class="fu">rownames</span>(net_matrix) <span class="sc">==</span> <span class="st">"Usa"</span>] <span class="ot">&lt;-</span> <span class="st">"USA"</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix)[<span class="fu">colnames</span>(net_matrix) <span class="sc">==</span> <span class="st">"Usa"</span>] <span class="ot">&lt;-</span> <span class="st">"USA"</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix)[<span class="fu">rownames</span>(net_matrix) <span class="sc">==</span> <span class="st">"United Kingdom"</span>] <span class="ot">&lt;-</span> <span class="st">"UK"</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix)[<span class="fu">colnames</span>(net_matrix) <span class="sc">==</span> <span class="st">"United Kingdom"</span>] <span class="ot">&lt;-</span> <span class="st">"UK"</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>country_strength <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(net_matrix) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="do">### top 18 countries ----</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>keep_countries_18 <span class="ot">&lt;-</span> <span class="fu">names</span>(</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>(country_strength[country_strength <span class="sc">&gt;</span> <span class="dv">0</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>)[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">18</span>, <span class="fu">sum</span>(country_strength <span class="sc">&gt;</span> <span class="dv">0</span>))]</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>net_matrix_18 <span class="ot">&lt;-</span> net_matrix[keep_countries_18, keep_countries_18, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>net_matrix_18 <span class="ot">&lt;-</span> net_matrix_18[</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(net_matrix_18) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix_18) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(net_matrix_18) <span class="sc">+</span> <span class="fu">rowSums</span>(net_matrix_18) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  drop <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>chord_cols_18 <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"#3B6EA8"</span>, <span class="st">"#4B9A8D"</span>, <span class="st">"#D6A24A"</span>, <span class="st">"#B76D68"</span>, <span class="st">"#6D7783"</span>, <span class="st">"#8A6FA8"</span>,</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#7FA35B"</span>, <span class="st">"#5E8C9A"</span>, <span class="st">"#C58A5A"</span>, <span class="st">"#8C7853"</span>, <span class="st">"#5B8E7D"</span>, <span class="st">"#A05C7B"</span>,</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#7895B2"</span>, <span class="st">"#B8A052"</span>, <span class="st">"#6F7D55"</span>, <span class="st">"#9B7E7E"</span>, <span class="st">"#4F7B8A"</span>, <span class="st">"#8E9A6B"</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>  )[<span class="fu">seq_along</span>(<span class="fu">rownames</span>(net_matrix_18))],</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(net_matrix_18)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>draw_chord_top18 <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.clear</span>()</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.par</span>(</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">track.margin =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>),</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">gap.degree   =</span> <span class="dv">2</span>,</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">canvas.xlim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.25</span>),</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">canvas.ylim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.25</span>, <span class="fl">1.25</span>)</span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chordDiagram</span>(</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>    net_matrix_18,</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">annotationTrack =</span> <span class="st">"grid"</span>,</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">annotationTrackHeight =</span> <span class="fu">c</span>(<span class="fl">0.04</span>, <span class="fl">0.02</span>),</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">preAllocateTracks  =</span> <span class="dv">1</span>,</span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid.col =</span> chord_cols_18,</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">transparency =</span> <span class="fl">0.35</span></span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.trackPlotRegion</span>(</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">track.index =</span> <span class="dv">1</span>,</span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.fun =</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>      xlim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"xlim"</span>)</span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>      ylim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"ylim"</span>)</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>      sector.name <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"sector.index"</span>)</span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">circos.text</span>(</span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mean</span>(xlim), ylim[<span class="dv">1</span>] <span class="sc">+</span> <span class="fl">0.25</span>,</span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>        sector.name,</span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>        <span class="at">facing =</span> <span class="st">"clockwise"</span>,</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>        <span class="at">niceFacing =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a>        <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>),</span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex =</span> <span class="fl">0.7</span>,</span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"#333333"</span></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg.border =</span> <span class="cn">NA</span></span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">circos.clear</span>()</span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>chord_pdf_18 <span class="ot">&lt;-</span> <span class="fu">file.path</span>(pdf_dir, <span class="st">"figure7_chord_top18.pdf"</span>)</span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>chord_png_18 <span class="ot">&lt;-</span> <span class="fu">file.path</span>(png_dir, <span class="st">"figure7_chord_top18.png"</span>)</span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(chord_pdf_18, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">useDingbats =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_chord_top18</span>()</span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(chord_png_18, <span class="at">width =</span> <span class="dv">5400</span>, <span class="at">height =</span> <span class="dv">5400</span>, <span class="at">res =</span> <span class="dv">450</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_chord_top18</span>()</span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a><span class="do">### all countries ----</span></span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>keep_all <span class="ot">&lt;-</span> <span class="fu">names</span>(country_strength[country_strength <span class="sc">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a>net_matrix_all <span class="ot">&lt;-</span> net_matrix[keep_all, keep_all, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a>net_matrix_all <span class="ot">&lt;-</span> net_matrix_all[</span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowSums</span>(net_matrix_all) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix_all) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(net_matrix_all) <span class="sc">+</span> <span class="fu">rowSums</span>(net_matrix_all) <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a>  drop <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a>ord_all <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">rowSums</span>(net_matrix_all) <span class="sc">+</span> <span class="fu">colSums</span>(net_matrix_all), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a>net_matrix_all <span class="ot">&lt;-</span> net_matrix_all[ord_all, ord_all, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a>base_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#3B6EA8"</span>, <span class="st">"#4B9A8D"</span>, <span class="st">"#D6A24A"</span>, <span class="st">"#B76D68"</span>, <span class="st">"#6D7783"</span>, <span class="st">"#8A6FA8"</span>,</span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#7FA35B"</span>, <span class="st">"#5E8C9A"</span>, <span class="st">"#C58A5A"</span>, <span class="st">"#8C7853"</span>, <span class="st">"#5B8E7D"</span>, <span class="st">"#A05C7B"</span>,</span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#7895B2"</span>, <span class="st">"#B0C052"</span>, <span class="st">"#6F7D55"</span>, <span class="st">"#9B7E7E"</span>, <span class="st">"#4F7B8A"</span>, <span class="st">"#8E9A6B"</span>,</span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#9e907e"</span>, <span class="st">"#dea5a4"</span>, <span class="st">"#898441"</span>, <span class="st">"#af9392"</span>, <span class="st">"#8d9490"</span>, <span class="st">"#708090"</span>,</span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#cd7f32"</span>, <span class="st">"#32cd4b"</span>, <span class="st">"#7f32cd"</span>, <span class="st">"#ca4a46"</span>, <span class="st">"#63000f"</span>, <span class="st">"#de3163"</span>,</span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#434d57"</span>, <span class="st">"#707390"</span>, <span class="st">"#908070"</span>, <span class="st">"#e3735e"</span>, <span class="st">"#e35e7e"</span>, <span class="st">"#364758"</span>,</span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#b22222"</span>, <span class="st">"#8eb222"</span>, <span class="st">"#22b2b2"</span>, <span class="st">"#ffd700"</span>, <span class="st">"#682860"</span>, <span class="st">"#685028"</span>,</span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#013220"</span>, <span class="st">"#038756"</span></span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a>country_names_all <span class="ot">&lt;-</span> <span class="fu">rownames</span>(net_matrix_all)</span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a>country_names_lookup <span class="ot">&lt;-</span> country_names_all</span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a>country_names_lookup[country_names_lookup <span class="sc">==</span> <span class="st">"UK"</span>] <span class="ot">&lt;-</span> <span class="st">"United Kingdom"</span></span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a>country_codes_all <span class="ot">&lt;-</span> <span class="fu">countrycode</span>(</span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">sourcevar =</span> country_names_lookup,</span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">origin =</span> <span class="st">"country.name"</span>,</span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">destination =</span> <span class="st">"iso3c"</span>,</span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">warn =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>country_codes_all[country_names_all <span class="sc">==</span> <span class="st">"USA"</span>] <span class="ot">&lt;-</span> <span class="st">"USA"</span></span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a>country_codes_all[country_names_all <span class="sc">==</span> <span class="st">"UK"</span>] <span class="ot">&lt;-</span> <span class="st">"GBR"</span></span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>country_codes_all[<span class="fu">is.na</span>(country_codes_all)] <span class="ot">&lt;-</span> country_names_all[<span class="fu">is.na</span>(country_codes_all)]</span>
+<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(net_matrix_all) <span class="ot">&lt;-</span> country_codes_all</span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(net_matrix_all) <span class="ot">&lt;-</span> country_codes_all</span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a>cols_all <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colorRampPalette</span>(base_cols[<span class="fu">seq_len</span>(<span class="fu">nrow</span>(net_matrix_all))])(<span class="fu">nrow</span>(net_matrix_all)),</span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames</span>(net_matrix_all)</span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a>chord_png_all <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="st">"chord_all_countries.png"</span>)</span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(chord_png_all, <span class="at">width =</span> <span class="dv">5000</span>, <span class="at">height =</span> <span class="dv">5000</span>, <span class="at">res =</span> <span class="dv">500</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.clear</span>()</span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.par</span>(</span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>  <span class="at">track.margin =</span> <span class="fu">c</span>(<span class="fl">0.005</span>, <span class="fl">0.005</span>),</span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>  <span class="at">gap.degree   =</span> <span class="dv">1</span>,</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>  <span class="at">canvas.xlim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.30</span>, <span class="fl">1.30</span>),</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a>  <span class="at">canvas.ylim  =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.30</span>, <span class="fl">1.30</span>)</span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a><span class="fu">chordDiagram</span>(</span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a>  net_matrix_all,</span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a>  <span class="at">annotationTrack =</span> <span class="st">"grid"</span>,</span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a>  <span class="at">annotationTrackHeight =</span> <span class="fu">c</span>(<span class="fl">0.035</span>, <span class="fl">0.015</span>),</span>
+<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a>  <span class="at">preAllocateTracks =</span> <span class="dv">1</span>,</span>
+<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid.col =</span> cols_all,</span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a>  <span class="at">transparency =</span> <span class="fl">0.45</span></span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.trackPlotRegion</span>(</span>
+<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a>  <span class="at">track.index =</span> <span class="dv">1</span>,</span>
+<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a>  <span class="at">panel.fun =</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a>    xlim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"xlim"</span>)</span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>    ylim <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"ylim"</span>)</span>
+<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a>    sector.name <span class="ot">&lt;-</span> <span class="fu">get.cell.meta.data</span>(<span class="st">"sector.index"</span>)</span>
+<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a>    <span class="fu">circos.text</span>(</span>
+<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mean</span>(xlim), ylim[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mm_y</span>(<span class="fl">3.0</span>),</span>
+<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a>      sector.name,</span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>      <span class="at">facing =</span> <span class="st">"clockwise"</span>,</span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>      <span class="at">niceFacing =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a>      <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.5</span>),</span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex =</span> <span class="fl">0.45</span>,</span>
+<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"#333333"</span></span>
+<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg.border =</span> <span class="cn">NA</span></span>
+<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a><span class="fu">circos.clear</span>()</span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1659,18 +1668,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Click to view version info
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.6.0 (2026-04-24)
-Platform: aarch64-apple-darwin23
-Running under: macOS Tahoe 26.4
+<pre><code>R version 4.5.2 (2025-10-31 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+  LAPACK version 3.12.1
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+[1] LC_COLLATE=English_Canada.utf8  LC_CTYPE=English_Canada.utf8   
+[3] LC_MONETARY=English_Canada.utf8 LC_NUMERIC=C                   
+[5] LC_TIME=English_Canada.utf8    
 
 time zone: America/Edmonton
 tzcode source: internal
@@ -1680,48 +1690,48 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] gridGraphics_0.5-1  png_0.1-9           bibliometrix_5.4.0 
- [4] countrycode_1.8.0   rnaturalearth_1.2.0 sf_1.1-1           
- [7] circlize_0.4.18     ComplexUpset_1.3.3  ggalluvial_0.12.6  
+ [1] gridGraphics_0.5-1  png_0.1-8           bibliometrix_5.2.1 
+ [4] countrycode_1.7.0   rnaturalearth_1.2.0 sf_1.1-0           
+ [7] circlize_0.4.17     ComplexUpset_1.3.3  ggalluvial_0.12.6  
 [10] magick_2.9.1        cowplot_1.2.0       scales_1.4.0       
-[13] patchwork_1.3.2     ggplot2_4.0.3       forcats_1.0.1      
-[16] stringr_1.6.0       purrr_1.2.2         dplyr_1.2.1        
-[19] tidyr_1.3.2         readr_2.2.0         readxl_1.5.0       
-[22] data.table_1.18.4  
+[13] patchwork_1.3.2     ggplot2_4.0.2       forcats_1.0.1      
+[16] stringr_1.6.0       purrr_1.2.1         dplyr_1.2.0        
+[19] tidyr_1.3.2         readr_2.2.0         readxl_1.4.5       
+[22] data.table_1.18.2.1
 
 loaded via a namespace (and not attached):
- [1] DBI_1.3.0               httr2_1.2.2             rlang_1.2.0            
- [4] magrittr_2.0.5          tidytext_0.4.3          otel_0.2.0             
- [7] e1071_1.7-17            compiler_4.6.0          systemfonts_1.3.2      
-[10] openalexR_3.0.1         vctrs_0.7.3             crayon_1.5.3           
+ [1] DBI_1.3.0               httr2_1.2.2             rlang_1.1.7            
+ [4] magrittr_2.0.4          tidytext_0.4.3          otel_0.2.0             
+ [7] e1071_1.7-17            compiler_4.5.2          systemfonts_1.3.2      
+[10] openalexR_3.0.1         vctrs_0.7.1             crayon_1.5.3           
 [13] pkgconfig_2.0.3         shape_1.4.6.1           fastmap_1.2.0          
 [16] labeling_0.4.3          ca_0.71.1               promises_1.5.0         
-[19] rmarkdown_2.31          tzdb_0.5.0              ragg_1.5.2             
-[22] bit_4.6.0               xfun_0.57               jsonlite_2.0.0         
-[25] SnowballC_0.7.1         later_1.4.8             parallel_4.6.0         
+[19] rmarkdown_2.30          tzdb_0.5.0              ragg_1.5.1             
+[22] bit_4.6.0               xfun_0.56               jsonlite_2.0.0         
+[25] SnowballC_0.7.1         later_1.4.8             parallel_4.5.2         
 [28] R6_2.6.1                stringi_1.8.7           RColorBrewer_1.1-3     
-[31] cellranger_1.1.0        Rcpp_1.1.1-1.1          knitr_1.51             
-[34] base64enc_0.1-6         httpuv_1.6.17           rentrez_1.2.4          
-[37] Matrix_1.7-5            igraph_2.3.1            tidyselect_1.2.1       
-[40] stringdist_0.9.17       rstudioapi_0.18.0       pubmedR_1.0.2          
+[31] cellranger_1.1.0        Rcpp_1.1.1              knitr_1.51             
+[34] base64enc_0.1-6         httpuv_1.6.16           rentrez_1.2.4          
+[37] Matrix_1.7-4            igraph_2.2.2            tidyselect_1.2.1       
+[40] stringdist_0.9.17       rstudioapi_0.18.0       pubmedR_0.0.3          
 [43] yaml_2.3.12             qpdf_1.4.1              plyr_1.8.9             
-[46] lattice_0.22-9          tibble_3.3.1            shiny_1.13.0           
-[49] withr_3.0.2             S7_0.2.2                askpass_1.2.1          
+[46] lattice_0.22-7          tibble_3.3.1            shiny_1.13.0           
+[49] withr_3.0.2             S7_0.2.1                askpass_1.2.1          
 [52] evaluate_1.0.5          rnaturalearthdata_1.0.0 units_1.0-1            
 [55] proxy_0.4-29            zip_2.3.3               pillar_1.11.1          
 [58] shinycssloaders_1.1.0   janeaustenr_1.0.0       KernSmooth_2.23-26     
-[61] plotly_4.12.0           generics_0.1.4          vroom_1.7.1            
-[64] hms_1.1.4               xtable_1.8-8            contentanalysis_1.1.0  
-[67] class_7.3-23            glue_1.8.1              lazyeval_0.2.3         
-[70] tools_4.6.0             tokenizers_0.3.0        openxlsx_4.2.8.1       
-[73] pdftools_3.9.0          visNetwork_2.1.4        XML_3.99-0.23          
-[76] rscopus_0.9.0           colorspace_2.1-2        dimensionsR_0.0.3      
-[79] bibliometrixData_0.3.0  cli_3.6.6               rappdirs_0.3.4         
-[82] textshaping_1.0.5       viridisLite_0.4.3       gtable_0.3.6           
-[85] digest_0.6.39           classInt_0.4-11         ggrepel_0.9.8          
-[88] htmlwidgets_1.6.4       farver_2.1.2            htmltools_0.5.9        
-[91] lifecycle_1.0.5         httr_1.4.8              GlobalOptions_0.1.4    
-[94] mime_0.13               bit64_4.8.0            </code></pre>
+[61] DT_0.34.0               plotly_4.12.0           generics_0.1.4         
+[64] vroom_1.7.0             hms_1.1.4               xtable_1.8-8           
+[67] contentanalysis_1.0.0   class_7.3-23            glue_1.8.0             
+[70] lazyeval_0.2.2          tools_4.5.2             tokenizers_0.3.0       
+[73] openxlsx_4.2.8.1        pdftools_3.7.0          visNetwork_2.1.4       
+[76] XML_3.99-0.23           rscopus_0.9.0           colorspace_2.1-2       
+[79] dimensionsR_0.0.3       bibliometrixData_0.3.0  cli_3.6.5              
+[82] rappdirs_0.3.4          textshaping_1.0.5       viridisLite_0.4.3      
+[85] gtable_0.3.6            digest_0.6.39           classInt_0.4-11        
+[88] ggrepel_0.9.8           htmlwidgets_1.6.4       farver_2.1.2           
+[91] htmltools_0.5.9         lifecycle_1.0.5         httr_1.4.8             
+[94] GlobalOptions_0.1.3     mime_0.13               bit64_4.6.0-1          </code></pre>
 </div>
 </div>
 </details>

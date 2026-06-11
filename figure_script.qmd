@@ -150,7 +150,7 @@ message(
 ```{r}
 #| code-fold: true
 
-theme_am <- function(base_size = 9) {
+theme_am <- function(base_size = 11) {
   theme_classic(base_size = base_size) +
     theme(
       text = element_text(color = "#222222"),
@@ -486,8 +486,8 @@ fig_comparison <- ggplot(cumulative_2000_2025, aes(x = Year, y = Count, color = 
     title = "AI in Ecology vs Life Science",
     subtitle = "2000-2025 | Log10 y-axis",
     x = "Year",
-    y = "Cumulative counts",
-    caption = "Counts are based on yearly database retrieval totals from Scopus exports, not the final screened review set."
+    y = "Cumulative counts"#,
+    #caption = "Counts are based on yearly database retrieval totals from Scopus exports, not the final screened review set."
   ) +
   plot_theme
 ```
