@@ -4,23 +4,23 @@ This repository contains bibliographic files, data and analysis code for this Sy
 
 ## /DataExtracted/
 This folder contains all data files used in the project.
-- AI_SysRev_counts.csv: Count per year of total reviews found.
-- Copy of Systematic mapping data extraction form (Responses).xlsx: Raw data extracted through Google Form.
-- Copy of Systematic mapping data extraction form (Responses) - Form Response 1.csv: csv formatting of the raw data extracted through Google Form.
-- Critical appraisal data extraction form (Responses) March 12:
-- Critical appraisal data extraction form (Responses) March 12 - Form Responses 1.csv:
-- dataModalityLong.csv:
-- dataSourceLong.csv:
-- LifeSci_SysRev_counts.csv:
-- scopusData.bib:
-- taskLong.csv:
-- trainingLong.csv:
+- AI_SysRev_counts.csv: Count per year of total reviews found using AI.
+- Copy of Systematic mapping data extraction form (Responses).xlsx: Raw data extracted through Google Form. Contains mapping data.
+- Copy of Systematic mapping data extraction form (Responses) - Form Response 1.csv: csv formatting of the raw mapping data.
+- Critical appraisal data extraction form (Responses) March 12.xlsx: Raw data extracted through Google Form. Contains critical appraisal data.
+- Critical appraisal data extraction form (Responses) March 12 - Form Responses 1.csv: csv formatting of the raw critical appraisal data.
+- dataModalityLong.csv: Long format breakdown of the mapping data containing data modality breakdown of each review.
+- dataSourceLong.csv: Long format breakdown of the mapping data containing data soource breakdown of each review.
+- LifeSci_SysRev_counts.csv: Count per year of total reviews found for Life Sciences in Scopus.
+- scopusData.bib: Bibliometric data of included reviews obtained from Scopus.
+- taskLong.csv: Long format breakdown of the mapping data containing task breakdown of each review.
+- trainingLong.csv: Long format breakdown of the mapping data containing training paradigm breakdown of each review.
 ## /Figures_AM/
 This folder contains the resulting Figures used in the manuscript.
 ## /PythonCode/
 Code used to analyse the raw data extracted and create the more compact data files in the DataExtracted folder.
-- bibliometric.py:
-- longFormatData.py:
+- bibliometric.py: Script to clean up and ummarize the bibliometric data used in the systematic map.
+- longFormatData.py: Script to clean up and create the necessary long format files used in the systematic map.
 ## /RCode/
 Folder contains additional R libraries used by figure_scripts.qmd.
 ## /data_AM/
