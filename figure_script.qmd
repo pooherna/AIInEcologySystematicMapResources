@@ -45,7 +45,7 @@ execute:
 
 # Introduction
 
-This supplementary material accompanies our systematic mapping paper: *The first systematic map of systematic reviews on the usage of AI in ecology*. It provides the R code used to generate the main result figures.
+This supplementary material accompanies our systematic mapping paper: *A systematic map of evidence syntheses on artificial intelligence in ecology*. It provides the R code used to generate the main result figures.
 
 The analyses use the final coded dataset of 72 systematic reviews, together with long-format files describing AI algorithms, data modalities, data sources, tasks, training information, and Scopus bibliographic records. 
 <!-- Input files are expected to be stored in `data_AM/`. Generated figures are saved to `figures_AM/`, with separate `pdf/` and `png/` subfolders. -->
