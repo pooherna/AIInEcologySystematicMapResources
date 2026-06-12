@@ -150,7 +150,7 @@ message(
 ```{r}
 #| code-fold: true
 
-theme_am <- function(base_size = 11) {
+theme_am <- function(base_size = 15) {
   theme_classic(base_size = base_size) +
     theme(
       text = element_text(color = "#222222"),
@@ -432,7 +432,7 @@ counts_long <- bind_rows(ai_counts, life_counts) |>
 
 
 # Common theme ----
-plot_theme <- theme_classic(base_size = 11) +
+plot_theme <- theme_classic(base_size = 15) +
   theme(
     text = element_text(color = "#222222"),
     axis.text = element_text(color = "#333333"),
@@ -483,8 +483,8 @@ fig_comparison <- ggplot(cumulative_2000_2025, aes(x = Year, y = Count, color = 
   annotation_logticks(sides = "l") +
   scale_color_manual(values = c("AI in Ecology" = "#2C7FB8", "Life Sciences" = "#D95F0E")) +
   labs(
-    title = "AI in Ecology vs Life Science",
-    subtitle = "2000-2025 | Log10 y-axis",
+    #title = "AI in Ecology vs Life Science",
+    #subtitle = "2000-2025 | Log10 y-axis",
     x = "Year",
     y = "Cumulative counts"#,
     #caption = "Counts are based on yearly database retrieval totals from Scopus exports, not the final screened review set."
@@ -714,11 +714,11 @@ names(era_upset_labelled)[match(era_order, names(era_upset_labelled))] <- era_la
 fig_era_upset <- ComplexUpset::upset(era_upset_labelled,
   intersect = unname(era_label_map[rev(era_order)]),
    base_annotations = list(
-    "Intersection size" = intersection_size(
+    "Intersection size" = (intersection_size(
       counts = TRUE,
       text = list(size = 5),
       mapping = aes(fill = "intersection")
-    ) +
+    ) + theme(axis.title = element_text(size = 16))) +
       scale_fill_manual(values = c(intersection = "#CD5556"), guide = "none")
   ),
   set_sizes = FALSE,
@@ -732,8 +732,8 @@ fig_era_upset <- ComplexUpset::upset(era_upset_labelled,
                       fill = "#698B21"),
     segment = geom_segment(linewidth = 0.8, colour = "#698B21"),
     outline_color = list(active = "#333333",inactive = "#ededed"))
-  ) +
-  labs(x = NULL, y = "Intersection size") +
+  ) + 
+  labs(x = NULL, y = "Intersection size") + 
   theme(
     text = element_text(size = 16),
     axis.text.x = element_blank(),
@@ -774,11 +774,11 @@ fig_task_upset <- ComplexUpset::upset(
   task_upset_labelled,
   intersect = task_sets_labelled,
   base_annotations = list(
-    "Intersection size" = intersection_size(
+    "Intersection size" = (intersection_size(
       counts = TRUE,
       text = list(size = 5),
       mapping = aes(fill = "intersection")
-    ) +
+    ) + theme(axis.title = element_text(size = 16))) +
       scale_fill_manual(values = c(intersection = "#53868B"), guide = "none")
   ),
   set_sizes = FALSE,
@@ -897,11 +897,11 @@ fig_modality_upset <- ComplexUpset::upset(
   modality_upset_labelled,
   intersect = modality_sets_labelled,
   base_annotations = list(
-    "Intersection size" = ComplexUpset::intersection_size(
+    "Intersection size" = (ComplexUpset::intersection_size(
       counts = TRUE,
       text = list(size = 5),
       mapping = aes(fill = "intersection")
-    ) +
+    ) + theme(axis.title = element_text(size = 16))) +
       scale_fill_manual(
         values = c(intersection = "#698B69"),
         guide = "none"
@@ -978,11 +978,11 @@ fig_source_upset <- ComplexUpset::upset(
   source_upset_labelled,
   intersect = source_sets_labelled,
   base_annotations = list(
-    "Intersection size" = ComplexUpset::intersection_size(
+    "Intersection size" = (ComplexUpset::intersection_size(
       counts = TRUE,
       text = list(size = 5),
       mapping = aes(fill = "intersection")
-    ) +
+    ) + theme(axis.title = element_text(size = 16))) +
       scale_fill_manual(
         values = c(intersection = "#8B864E"),
         guide = "none"
@@ -1125,7 +1125,7 @@ fig_sankey <- ggplot(
   ) +
   scale_fill_manual(values = pal_era, breaks = era_order, drop = FALSE) +
   labs(y = "Count", x = NULL) +
-  theme_am(base_size = 9) +
+  theme_am(base_size = 13) +
   theme(
     panel.grid = element_blank(),
     axis.text.y = element_blank(),
@@ -1467,7 +1467,7 @@ draw_chord_top18 <- function() {
         facing = "clockwise",
         niceFacing = TRUE,
         adj = c(0, 0.5),
-        cex = 0.7,
+        cex = 0.9,
         col = "#333333"
       )
     },
@@ -1563,7 +1563,7 @@ circos.trackPlotRegion(
       facing = "clockwise",
       niceFacing = TRUE,
       adj = c(0, 0.5),
-      cex = 0.45,
+      cex = 0.7,
       col = "#333333"
     )
   },
